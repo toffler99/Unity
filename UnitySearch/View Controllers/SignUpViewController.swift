@@ -14,6 +14,7 @@ import FirebaseFirestore
 class SignUpViewController: UIViewController {
     
     
+    @IBOutlet weak var elementsStackView: UIStackView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -23,6 +24,10 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var errorLabel: UILabel!
+    
+    private var skillList : [String] = ["Accounting Clerk","Accounts Payable","Accounts Receivable","Admin Assistant","Bookkeeper","Cash Applications","Collections","Credit Analyst","Data Entry","Payroll Accountant","Helpdesk","Desktop","Quality Assurance"]
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +42,43 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 0
         
         // Style the elements
+        
+        elementsStackView.translatesAutoresizingMaskIntoConstraints = false
+        firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        phoneNumberTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        elementsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        elementsStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        elementsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        
+        firstNameTextField.backgroundColor = .yellow
+        firstNameTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 1).isActive = true
+        firstNameTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -1).isActive = true
+        firstNameTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        
+        lastNameTextField.backgroundColor = .yellow
+        lastNameTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 1).isActive = true
+        lastNameTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -1).isActive = true
+        lastNameTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        
+        emailTextField.backgroundColor = .yellow
+        emailTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 1).isActive = true
+        emailTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -1).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        
+        phoneNumberTextField.backgroundColor = .yellow
+        phoneNumberTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 1).isActive = true
+        phoneNumberTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -1).isActive = true
+        phoneNumberTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        
+        passwordTextField.backgroundColor = .yellow
+        passwordTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 1).isActive = true
+        passwordTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -1).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        
         Utilitites.styleTextField(firstNameTextField)
         Utilitites.styleTextField(lastNameTextField)
         Utilitites.styleTextField(emailTextField)
@@ -44,7 +86,6 @@ class SignUpViewController: UIViewController {
         Utilitites.styleTextField(passwordTextField)
         Utilitites.styleFilledButton(signUpButton)
     }
-    
     
     /*
      // MARK: - Navigation
@@ -65,7 +106,6 @@ class SignUpViewController: UIViewController {
             phoneNumberTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            
             
             return "Please fill in all fields"
         }
@@ -99,7 +139,7 @@ class SignUpViewController: UIViewController {
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            
+    
             // Create the user
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                 // Check for errors
@@ -137,3 +177,4 @@ class SignUpViewController: UIViewController {
     }
     
 }
+

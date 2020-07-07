@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oHV-3W-s5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oHV-3W-s5n">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -211,6 +211,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="tmk-gH-tIO"/>
                     <connections>
+                        <outlet property="elementsStackView" destination="uAY-Kk-sGH" id="4dg-Y4-SY3"/>
                         <outlet property="emailTextField" destination="bL1-es-UUj" id="qMt-zB-sAP"/>
                         <outlet property="errorLabel" destination="ykK-2T-Sfz" id="Em7-sT-jV3"/>
                         <outlet property="firstNameTextField" destination="meW-m0-k7Q" id="aCK-oJ-aRK"/>
