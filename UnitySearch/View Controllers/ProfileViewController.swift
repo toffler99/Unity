@@ -50,6 +50,7 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
         setUpLayout()
         addGesture()
         
+        
         //fetchDatafromFirebase
         guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
         let db = Firestore.firestore()
