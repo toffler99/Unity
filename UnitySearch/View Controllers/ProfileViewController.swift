@@ -67,12 +67,15 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
                 let lastName = data["lastName"] as? String ?? "Anonymous"
                 let email = data["email"] as? String ?? ""
                 let phoneNumber = data["phoneNumber"] as? String ?? ""
+                let skills = data["skills"] as? [String] ?? []
                 
                 self.firstNameTF.text = firstName
                 self.lastNameTF.text = lastName
                 self.emailTF.text = email
                 self.phoneNumTF.text = phoneNumber
+                self.skillList = skills
                 //print(data)
+                print(skills)
             }
         }
     }
