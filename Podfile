@@ -11,5 +11,6 @@ target 'UnitySearch' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
+	pod 'GDCheckbox'
 
 end

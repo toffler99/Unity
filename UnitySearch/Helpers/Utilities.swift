@@ -11,7 +11,7 @@ import UIKit
 
 class Utilitites {
     
-    static func styleTextField(_ textfield:UITextField) {
+    static func styleTextField(_ textfield : UITextField) {
         
         // Create the bottom line
         let bottomLine = CALayer()
@@ -27,14 +27,14 @@ class Utilitites {
         textfield.layer.addSublayer(bottomLine)
     }
 
-    static func styleFilledButton(_ button:UIButton) {
+    static func styleFilledButton(_ button : UIButton) {
         // Filled rounded corner style
         button.backgroundColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
         button.layer.cornerRadius = 25.0
         button.tintColor = UIColor.white
     }
     
-    static func styleHollowButton(_ button:UIButton) {
+    static func styleHollowButton(_ button : UIButton) {
         // Hollow rounded corner style
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor
@@ -42,11 +42,46 @@ class Utilitites {
         button.tintColor = UIColor.black
     }
     
-    static func isPasswordValid(_ password:String) -> Bool {
+    static func isPasswordValid(_ password : String) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate(with: password)
     }
-    
     // Add email validation
     // Add phone number validation
+}
+
+extension UIViewController {
+    func setNavigationBackButton(onView : UIViewController,in item : UIImageView = UIImageView() ,bool : Bool) {
+        let tapBackBtn = UITapGestureRecognizer(target: onView, action: #selector(popVC))
+        item.addGestureRecognizer(tapBackBtn)
+        if bool {
+            item.translatesAutoresizingMaskIntoConstraints = false
+            item.isHidden = false
+            let constBackBtn : [NSLayoutConstraint] = [NSLayoutConstraint(item: item, attribute: .width, relatedBy: .equal,
+                                                                          toItem: nil,
+                                                                          attribute: .width, multiplier: 1, constant: 25),
+                                                       NSLayoutConstraint(item: item, attribute: .height, relatedBy: .equal,
+                                                                          toItem: nil,
+                                                                          attribute: .height, multiplier: 1, constant: 25),
+                                                       NSLayoutConstraint(item: item, attribute: .top, relatedBy: .equal,
+                                                                          toItem: onView.navigationController?.navigationBar,
+                                                                          attribute: .top, multiplier: 1, constant: 8),
+                                                       NSLayoutConstraint(item: item, attribute: .leading, relatedBy: .equal,
+                                                                          toItem: onView.navigationController?.navigationBar,
+                                                                          attribute: .leading, multiplier: 1, constant: 12)]
+            onView.navigationController?.navigationBar.addSubview(item)
+            onView.navigationController?.navigationBar.addConstraints(constBackBtn)
+            item.image = UIImage(named: "leftarrow")
+            item.contentMode = .scaleAspectFill
+            item.isUserInteractionEnabled = true
+        
+        } else {
+            item.isHidden = true
+            item.removeGestureRecognizer(tapBackBtn)
+        }
+    }
+    
+    @objc func popVC() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
