@@ -121,6 +121,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpTapped(_ sender: Any) {
         
+        
         // Validate the fields
         let error = validateFields()
         
