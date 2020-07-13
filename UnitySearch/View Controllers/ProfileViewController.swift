@@ -77,6 +77,9 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
                 //print(data)
                 print(skills)
             }
+            DispatchQueue.main.async {
+                self.skillTableView.reloadData()
+            }
         }
     }
     
