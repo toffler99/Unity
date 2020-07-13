@@ -25,9 +25,6 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
-    private var skillList : [String] = ["Accounting Clerk","Accounts Payable","Accounts Receivable","Admin Assistant","Bookkeeper","Cash Applications","Collections","Credit Analyst","Data Entry","Payroll Accountant","Helpdesk","Desktop","Quality Assurance"]
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,4 +174,5 @@ class SignUpViewController: UIViewController {
     }
     
 }
+
 

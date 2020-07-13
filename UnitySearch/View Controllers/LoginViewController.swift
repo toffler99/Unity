@@ -18,13 +18,29 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var loginButton: UIButton!
+    var goBackBtn : UIImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .automatic
+        self.navigationItem.title = "Login"
+        self.navigationItem.hidesBackButton = false
+        self.view.backgroundColor = .white
         setUpElements()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.hidesBackButton = true
+        setNavigationBackButton(onView: self, in: goBackBtn, bool: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        setNavigationBackButton(onView: self, in: goBackBtn, bool: false)
+        self.navigationController?.isNavigationBarHidden = true
+    }
     func setUpElements() {
         //Hide error label
         errorLabel.alpha = 0
@@ -46,22 +62,22 @@ class LoginViewController: UIViewController {
     @IBAction func LogInButtonTapped(_ sender: Any) {
         
         // Validate textfields
+        pushProfileVC()
         
-        
-        // Create cleaned versions of textfields
-        let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // Sign in the user
-        Auth.auth().signIn(withEmail: cleanedEmail, password: cleanedPassword) { (result, error) in
-            if error != nil {
-                // Could not sign in
-                self.errorLabel.text = error!.localizedDescription
-                self.errorLabel.alpha = 1
-            } else {
-                self.transitionToHome()
-            }
-        }
+//        // Create cleaned versions of textfields
+//        let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//
+//        // Sign in the user
+//        Auth.auth().signIn(withEmail: cleanedEmail, password: cleanedPassword) { (result, error) in
+//            if error != nil {
+//                // Could not sign in
+//                self.errorLabel.text = error!.localizedDescription
+//                self.errorLabel.alpha = 1
+//            } else {
+//                self.pushProfileVC()
+//            }
+//        }
         
     }
     
@@ -73,4 +89,8 @@ class LoginViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
     
+    func pushProfileVC() {
+        let profileVC = ProfileViewConroller()
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
 }
