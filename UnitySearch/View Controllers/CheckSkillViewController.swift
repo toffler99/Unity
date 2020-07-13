@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GDCheckbox
+import Firebase
 
 protocol SelectSkillDelegate : class {
     func selectSkillDelegate(skillList : [String])
@@ -25,16 +26,25 @@ class CheckSkillViewController : UIViewController {
     private var skillListTableView : UITableView!
     private var lineImg : UIImageView!
     private var skillList : [String] = ["Accounting Clerk","Accounts Payable","Accounts Receivable","Admin Assistant",
-                                           "Bookkeeper","Cash Applications","Collections","Credit Analyst","Data Entry",
-                                           "Payroll Accountant","Helpdesk Desktop","Quality Assurance"]
+                                        "Bookkeeper","Cash Applications","Collections","Credit Analyst","Data Entry",
+                                        "Payroll Accountant","Helpdesk Desktop","Quality Assurance"]
     
     private var selectedSkillList : [String:Bool] = ["Accounting Clerk" : false, "Accounts Payable" : false,
-                                             "Accounts Receivable" : false, "Admin Assistant" : false,
-                                             "Bookkeeper" : false, "Cash Applications" : false,
-                                             "Collections" : false, "Credit Analyst" : false, "Data Entry" : false,
-                                             "Payroll Accountant" : false, "Helpdesk Desktop" : false, "Quality Assurance" : false ]
+                                                     "Accounts Receivable" : false, "Admin Assistant" : false,
+                                                     "Bookkeeper" : false, "Cash Applications" : false,
+                                                     "Collections" : false, "Credit Analyst" : false, "Data Entry" : false,
+                                                     "Payroll Accountant" : false, "Helpdesk Desktop" : false, "Quality Assurance" : false ]
     
-    var addSkillList : [String] = []
+    var addSkillList : [String] = [] {
+        didSet {
+            let db = Firestore.firestore()
+            guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
+    
+            let useridPath = db.collection("users").document("\(userDefualtID)")
+            useridPath.updateData(["skills" : self.addSkillList])
+            
+        }
+    }
     //lifeCycle
     override func viewDidLoad() {
         self.view.backgroundColor = .white
@@ -119,8 +129,8 @@ extension CheckSkillViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckSkillTableViewCell", for: indexPath) as! CheckSkillTableViewCell
-//        cell.checkBox.isOn = false
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckSkillTableViewCell", for: indexPath) as! CheckSkillTableViewCell
+        //        cell.checkBox.isOn = false
         print("deselect \(indexPath.row)")
     }
     
