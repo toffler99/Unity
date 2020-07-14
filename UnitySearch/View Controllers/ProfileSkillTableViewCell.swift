@@ -12,7 +12,7 @@ import UIKit
 class ProfileSkillTableViewCell : UITableViewCell {
     
     //property
-    var skillName : UITextField!
+    var skillName : CustomTextField!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,7 +28,7 @@ class ProfileSkillTableViewCell : UITableViewCell {
     }
     
     func setUpLayout() {
-        skillName = UITextField()
+        skillName = CustomTextField()
         skillName.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(skillName)
         
@@ -36,14 +36,14 @@ class ProfileSkillTableViewCell : UITableViewCell {
         skillName.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         skillName.heightAnchor.constraint(equalToConstant: 28).isActive = true
         
-        skillName.minimumFontSize = 18
+        skillName.minimumFontSize = 16
         skillName.layer.cornerRadius = 14
         skillName.layer.borderWidth = 1
         skillName.layer.borderColor = UIColor.lightGray.cgColor
         skillName.textAlignment = .center
-        skillName.allowsEditingTextAttributes = false
         skillName.backgroundColor = .none
         skillName.adjustsFontSizeToFitWidth = true
+        skillName.font = UIFont(name: "SFProDisplay-Medium", size: 14)
         
 //        skillName.textAlignment = .center
 //        skillName.layer.cornerRadius = 14

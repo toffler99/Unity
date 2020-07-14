@@ -24,6 +24,8 @@
 		626C877F24B769F40078FA28 /* CheckSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C877E24B769F40078FA28 /* CheckSkillViewController.swift */; };
 		626C878124B99D490078FA28 /* CheckSkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C878024B99D490078FA28 /* CheckSkillTableViewCell.swift */; };
 		626C878324BB14BF0078FA28 /* ProfileSkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C878224BB14BF0078FA28 /* ProfileSkillTableViewCell.swift */; };
+		626C878524BD517B0078FA28 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C878424BD517B0078FA28 /* CustomTextField.swift */; };
+		626C878824BD56EE0078FA28 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 626C878724BD56EE0078FA28 /* SFProDisplay-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		626C877E24B769F40078FA28 /* CheckSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSkillViewController.swift; sourceTree = "<group>"; };
 		626C878024B99D490078FA28 /* CheckSkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSkillTableViewCell.swift; sourceTree = "<group>"; };
 		626C878224BB14BF0078FA28 /* ProfileSkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSkillTableViewCell.swift; sourceTree = "<group>"; };
+		626C878424BD517B0078FA28 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		626C878724BD56EE0078FA28 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
 		6E577872E1714A698B75D8A5 /* Pods_UnitySearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitySearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2E57A4CD0725A92D41F7137 /* Pods-UnitySearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitySearch.release.xcconfig"; path = "Target Support Files/Pods-UnitySearch/Pods-UnitySearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +87,7 @@
 		0B2647B524AED98F007C4A74 /* UnitySearch */ = {
 			isa = PBXGroup;
 			children = (
+				626C878624BD56CF0078FA28 /* Fonts */,
 				0B5CEBFA24B3EEF1006BBDDA /* Helpers */,
 				0B5CEBF924B3E434006BBDDA /* View Controllers */,
 				0B2647B624AED98F007C4A74 /* AppDelegate.swift */,
@@ -116,6 +121,7 @@
 			children = (
 				0B5CEBFB24B3EF5F006BBDDA /* Utilities.swift */,
 				0B5CEBFF24B414EF006BBDDA /* Constants.swift */,
+				626C878424BD517B0078FA28 /* CustomTextField.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -127,6 +133,14 @@
 				E2E57A4CD0725A92D41F7137 /* Pods-UnitySearch.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		626C878624BD56CF0078FA28 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				626C878724BD56EE0078FA28 /* SFProDisplay-Medium.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		AA33C75CD13D64111E04455D /* Frameworks */ = {
@@ -201,6 +215,7 @@
 				0B5CEBFE24B3FE58006BBDDA /* GoogleService-Info.plist in Resources */,
 				0B2647C024AED990007C4A74 /* Assets.xcassets in Resources */,
 				0B2647BE24AED98F007C4A74 /* Main.storyboard in Resources */,
+				626C878824BD56EE0078FA28 /* SFProDisplay-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				626C878524BD517B0078FA28 /* CustomTextField.swift in Sources */,
 				0B2647BB24AED98F007C4A74 /* ViewController.swift in Sources */,
 				0B2647B724AED98F007C4A74 /* AppDelegate.swift in Sources */,
 				0B5CEBFC24B3EF5F006BBDDA /* Utilities.swift in Sources */,
