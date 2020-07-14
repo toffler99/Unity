@@ -62,32 +62,32 @@ class LoginViewController: UIViewController {
     @IBAction func LogInButtonTapped(_ sender: Any) {
         
         // Validate textfields
-        pushProfileVC()
+       // pushProfileVC()
         
-//        // Create cleaned versions of textfields
-//        let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-//        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Create cleaned versions of textfields
+        let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        // Sign in the user
+        Auth.auth().signIn(withEmail: cleanedEmail, password: cleanedPassword) { (result, error) in
+            if error != nil {
+                // Could not sign in
+                self.errorLabel.text = error!.localizedDescription
+                self.errorLabel.alpha = 1
+            } else {
+                self.pushProfileVC()
+            }
+        }
+        
+    }
+    
+//    func transitionToHome() {
+//        let homeViewController =
+//        storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
 //
-//        // Sign in the user
-//        Auth.auth().signIn(withEmail: cleanedEmail, password: cleanedPassword) { (result, error) in
-//            if error != nil {
-//                // Could not sign in
-//                self.errorLabel.text = error!.localizedDescription
-//                self.errorLabel.alpha = 1
-//            } else {
-//                self.pushProfileVC()
-//            }
-//        }
-        
-    }
-    
-    func transitionToHome() {
-        let homeViewController =
-        storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-    
-        view.window?.rootViewController = homeViewController
-        view.window?.makeKeyAndVisible()
-    }
+//        view.window?.rootViewController = homeViewController
+//        view.window?.makeKeyAndVisible()
+//    }
     
     func pushProfileVC() {
         let profileVC = ProfileViewConroller()
