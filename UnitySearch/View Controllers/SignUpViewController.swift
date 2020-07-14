@@ -121,10 +121,6 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpTapped(_ sender: Any) {
         
-        
-        
-        
-        
         // Validate the fields
         let error = validateFields()
         
@@ -150,15 +146,17 @@ class SignUpViewController: UIViewController {
                 } else {
                     // User was created successfully, now store the first name and last name
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstname" : firstName, "lastname": lastName, "phonenumber": phoneNumber, "uid": result!.user.uid]) { (error) in
-                        if error != nil {
-                            // Show error message
-                            self.showError("Error saving user data")
-                        }
-                    }
+                    let newUser = db.collection("users").document()
                     
-                    // Transition to the homescreen
-                    self.transitionToHome()
+                    let documentID = newUser.documentID
+                    
+                    newUser.setData(["firstName" : firstName, "lastName": lastName, "phoneNumber": phoneNumber, "email": email ,"timeStamp":"Date()", "id": documentID, "status": "Red or Green"])
+                    
+                    // Save documentID into userDefault
+                    UserDefaults.standard.set(documentID, forKey: "myID")
+                    
+                    // to profile VC
+                    self.pushProfileVC()
                 }
             }
         }
@@ -169,12 +167,17 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     
-    func transitionToHome() {
-        let homeViewController =
-        storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+//    func transitionToHome() {
+//        let homeViewController =
+//        storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+//
+//        view.window?.rootViewController = homeViewController
+//        view.window?.makeKeyAndVisible()
+//    }'
     
-        view.window?.rootViewController = homeViewController
-        view.window?.makeKeyAndVisible()
+    func pushProfileVC() {
+        let profileVC = ProfileViewConroller()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     
 }

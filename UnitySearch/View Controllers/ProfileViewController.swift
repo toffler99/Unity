@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GDCheckbox
+import Firebase
 
 class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     
@@ -48,6 +49,37 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
         addSubView()
         setUpLayout()
         addGesture()
+        
+        //fetchDatafromFirebase
+        guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
+        let db = Firestore.firestore()
+        
+        let docRef = db.collection("users").document("\(userDefualtID)")
+        docRef.getDocument { (document, error) in
+            if error != nil {
+                print("there is an error in getting user profile")
+            }
+            
+            if let document = document, document.exists {
+                guard let data = document.data() else {return}
+                let firstName = data["firstName"] as? String ?? "Anonymous"
+                let lastName = data["lastName"] as? String ?? "Anonymous"
+                let email = data["email"] as? String ?? ""
+                let phoneNumber = data["phoneNumber"] as? String ?? ""
+                let skills = data["skills"] as? [String] ?? []
+                
+                self.firstNameTF.text = firstName
+                self.lastNameTF.text = lastName
+                self.emailTF.text = email
+                self.phoneNumTF.text = phoneNumber
+                self.skillList = skills
+                //print(data)
+                print(skills)
+            }
+            DispatchQueue.main.async {
+                self.skillTableView.reloadData()
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -144,14 +176,14 @@ extension ProfileViewConroller {
         firstNameTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
         firstNameTF.adjustsFontSizeToFitWidth = true
         firstNameTF.allowsEditingTextAttributes = false
-        firstNameTF.text = "firstName"
+        //firstNameTF.text = "firstName"
         
         lastNameTF.leadingAnchor.constraint(equalTo: firstNameTF.trailingAnchor, constant: 4).isActive = true
         lastNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
         lastNameTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
         lastNameTF.adjustsFontSizeToFitWidth = true
         lastNameTF.allowsEditingTextAttributes = false
-        lastNameTF.text = "lastName"
+        //lastNameTF.text = "lastName"
         
         phoneNumLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
         phoneNumLB.topAnchor.constraint(equalTo: NameLB.bottomAnchor, constant: 12).isActive = true
@@ -165,7 +197,7 @@ extension ProfileViewConroller {
         phoneNumTF.widthAnchor.constraint(equalToConstant: 200).isActive = true
         phoneNumTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
         phoneNumTF.allowsEditingTextAttributes = false
-        phoneNumTF.text = "010 1234 5678"
+        //phoneNumTF.text = "010 1234 5678"
         
         emailLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
         emailLB.topAnchor.constraint(equalTo: phoneNumLB.bottomAnchor, constant: 12).isActive = true
@@ -179,7 +211,7 @@ extension ProfileViewConroller {
         emailTF.widthAnchor.constraint(equalToConstant: 240).isActive = true
         emailTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
         emailTF.allowsEditingTextAttributes = false
-        emailTF.text = "toffler@google.com"
+        //emailTF.text = "toffler@google.com"
         
         statusLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
         statusLB.topAnchor.constraint(equalTo: emailLB.bottomAnchor, constant: 12).isActive = true
