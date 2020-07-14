@@ -12,8 +12,8 @@ import UIKit
 class ProfileSkillTableViewCell : UITableViewCell {
     
     //property
-    var skillName : UITextView!
-
+    var skillName : UITextField!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpLayout()
@@ -28,24 +28,33 @@ class ProfileSkillTableViewCell : UITableViewCell {
     }
     
     func setUpLayout() {
-        skillName = UITextView()
+        skillName = UITextField()
         skillName.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(skillName)
         
         skillName.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4).isActive = true
         skillName.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         skillName.heightAnchor.constraint(equalToConstant: 28).isActive = true
-        skillName.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
-        skillName.textAlignment = .center
+        skillName.minimumFontSize = 18
         skillName.layer.cornerRadius = 14
-        skillName.clipsToBounds = true
-        skillName.allowsEditingTextAttributes = false
-        skillName.autoresizesSubviews = true
-        skillName.layer.borderColor = UIColor.lightGray.cgColor
         skillName.layer.borderWidth = 1
-        skillName.textColor = .black
-        skillName.backgroundColor = .white
-        skillName.isScrollEnabled = false
+        skillName.layer.borderColor = UIColor.lightGray.cgColor
+        skillName.textAlignment = .center
+        skillName.allowsEditingTextAttributes = false
+        skillName.backgroundColor = .none
+        skillName.adjustsFontSizeToFitWidth = true
+        
+//        skillName.textAlignment = .center
+//        skillName.layer.cornerRadius = 14
+//        skillName.clipsToBounds = true
+//        skillName.allowsEditingTextAttributes = false
+//        skillName.autoresizesSubviews = true
+//        skillName.layer.borderColor = UIColor.lightGray.cgColor
+//        skillName.layer.borderWidth = 1
+//        skillName.textColor = .black
+//        skillName.backgroundColor = .white
+//        skillName.isScrollEnabled = false
+
     }
 }

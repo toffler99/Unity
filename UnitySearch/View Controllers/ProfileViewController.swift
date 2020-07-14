@@ -25,7 +25,7 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     private var saveBtn : UILabel!
     private var editBtn : UIImageView!
     private var statusLB : UILabel!
-    private var skillList : [String] = ["aaaa","bbbbb"]
+    private var skillList : [String] = ["aaaaaaaa","bbbbbbbbbbbbb"]
     private var skillLB : UILabel!
     private var statusSwitch : UISwitch!
     private var checkBtn : UIImageView!

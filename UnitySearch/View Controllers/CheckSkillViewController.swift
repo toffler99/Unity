@@ -181,6 +181,7 @@ extension CheckSkillViewController {
         saveBtn.image = UIImage(named: "check")
         saveBtn.layer.cornerRadius = 12
         saveBtn.clipsToBounds = true
+        
         let saveBtnGesture = UITapGestureRecognizer(target: self, action: #selector(saveSkill))
         saveBtn.addGestureRecognizer(saveBtnGesture)
         saveBtn.isUserInteractionEnabled = true
