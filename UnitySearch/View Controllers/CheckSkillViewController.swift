@@ -44,6 +44,7 @@ class CheckSkillViewController : UIViewController {
             useridPath.updateData(["skills" : self.addSkillList])
             
         }
+        
     }
     //lifeCycle
     override func viewDidLoad() {
