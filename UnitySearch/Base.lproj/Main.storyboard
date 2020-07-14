@@ -6,6 +6,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -23,6 +28,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Xvb-7P-bVq"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="17"/>
                                         <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <segue destination="Zys-2p-NnT" kind="show" id="6mb-Dg-eZS"/>
@@ -91,6 +97,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="QuG-xu-DO8"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="17"/>
                                         <state key="normal" title="Log In"/>
                                         <connections>
                                             <action selector="LogInButtonTapped:" destination="mba-25-ybf" eventType="touchUpInside" id="nyS-ys-GGu"/>

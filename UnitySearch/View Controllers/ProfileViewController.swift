@@ -186,6 +186,7 @@ extension ProfileViewConroller {
         statusLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
         statusLB.widthAnchor.constraint(equalToConstant: 200).isActive = true
         statusLB.text = "looking for a job"
+        statusLB.font = UIFont(name: "SFProDisplay-Medium", size: 17)
         statusLB.backgroundColor = .yellow
         statusLB.textAlignment = .left
         
@@ -241,8 +242,9 @@ extension ProfileViewConroller : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSkillTableViewCell", for: indexPath) as! ProfileSkillTableViewCell
         cell.skillName.text = skillList[indexPath.row]
         cell.skillName.textColor = .black
+        cell.skillName.allowsEditingTextAttributes = false
+        cell.selectionStyle = .none
+        cell.skillName.font = UIFont(name: "SF-Pro-Display-Medium", size: 30)
         return cell
     }
-    
-    
 }
