@@ -49,11 +49,15 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-        setNavigationBackButton(onView: self, in: goBackBtn, bool: true)
+        setNavigationBackButton(onView: self, in: goBackBtn, bool: false)
         addSubView()
         setUpLayout()
         addGesture()
         updateViews()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
     }
     
     //Updateviews and sync between firebase and local
@@ -124,10 +128,6 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
                 self.skillTableView.reloadData()
             }
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        setNavigationBackButton(onView: self, in: goBackBtn, bool: false)
     }
     
     @objc func tuchUpInsideCheckBtn() {
