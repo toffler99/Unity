@@ -35,14 +35,18 @@ class CheckSkillViewController : UIViewController {
                                                      "Collections" : false, "Credit Analyst" : false, "Data Entry" : false,
                                                      "Payroll Accountant" : false, "Helpdesk Desktop" : false, "Quality Assurance" : false ]
     
+    var userController = UserController()
+    
     var addSkillList : [String] = [] {
         didSet {
             let db = Firestore.firestore()
-            guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
-            
-            let useridPath = db.collection("users").document("\(userDefualtID)")
+            //guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
+            guard let user = self.userController.user else {return}
+            let useridPath = db.collection("users").document("\(user.id)")
             useridPath.updateData(["skills" : self.addSkillList])
-            
+            //adding skills into local
+            self.userController.user?.skills = self.addSkillList
+            self.userController.saveToPersistentStore()
         }
         
     }
