@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     var goBackBtn : UIImageView = UIImageView()
     
+    var userController = UserController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
@@ -91,6 +93,9 @@ class LoginViewController: UIViewController {
     
     func pushProfileVC() {
         let profileVC = ProfileViewConroller()
+        guard let user = self.userController.user else {return}
+        profileVC.user = user
+        profileVC.userController = userController
         navigationController?.pushViewController(profileVC, animated: true)
     }
 }

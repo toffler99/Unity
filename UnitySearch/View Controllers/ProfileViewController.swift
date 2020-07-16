@@ -13,7 +13,7 @@ import Firebase
 
 class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     
-
+    
     //property
     //first name, last name, email, phoneNum, status, skill
     private var NameLB : UILabel!
@@ -34,6 +34,10 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     private var lineImg : UIImageView!
     private var skillTableView : UITableView!
     
+    
+    var user: User?
+    var userController: UserController?
+    
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -49,12 +53,27 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
         addSubView()
         setUpLayout()
         addGesture()
+        updateViews()
+    }
+    
+    //Updateviews and sync between firebase and local
+    private func updateViews() {
+        
+        //updateviews from local
+        guard let user = self.user else {return}
+        self.firstNameTF.text = user.firstName
+        self.lastNameTF.text = user.lastName
+        self.emailTF.text = user.email
+        self.phoneNumTF.text = user.phoneNumber
+        
+        guard let localSkills = user.skills else {return}
+        self.skillList = localSkills
         
         //fetchDatafromFirebase
-        guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
+        //guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
         let db = Firestore.firestore()
         
-        let docRef = db.collection("users").document("\(userDefualtID)")
+        let docRef = db.collection("users").document("\(user.id)")
         docRef.getDocument { (document, error) in
             if error != nil {
                 print("there is an error in getting user profile")
@@ -67,12 +86,37 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
                 let email = data["email"] as? String ?? ""
                 let phoneNumber = data["phoneNumber"] as? String ?? ""
                 let skills = data["skills"] as? [String] ?? []
+             
+             //compare firebase and local store -> there is another way with UserRepresentation (from firebase) and compare this object to local object with comparison codes at once
+                if user.firstName != firstName {
+                    self.firstNameTF.text = firstName
+                    self.userController?.user?.firstName = firstName
+                    self.userController?.saveToPersistentStore()
+                }
                 
-                self.firstNameTF.text = firstName
-                self.lastNameTF.text = lastName
-                self.emailTF.text = email
-                self.phoneNumTF.text = phoneNumber
-                self.skillList = skills
+                if user.lastName != lastName {
+                    self.lastNameTF.text = lastName
+                    self.userController?.user?.lastName = lastName
+                    self.userController?.saveToPersistentStore()
+                }
+                
+                if user.email != email {
+                    self.emailTF.text = email
+                    self.userController?.user?.email = email
+                    self.userController?.saveToPersistentStore()
+                }
+                
+                if user.phoneNumber != phoneNumber {
+                    self.phoneNumTF.text = phoneNumber
+                    self.userController?.user?.phoneNumber = phoneNumber
+                    self.userController?.saveToPersistentStore()
+                }
+                
+                if localSkills != skills {
+                    self.skillList = skills
+                    self.userController?.user?.skills? = skills
+                    self.userController?.saveToPersistentStore()
+                }
                 //print(data)
                 print(skills)
             }

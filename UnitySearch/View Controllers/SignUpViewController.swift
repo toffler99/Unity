@@ -25,6 +25,8 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    var userController = UserController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,10 +152,14 @@ class SignUpViewController: UIViewController {
                     
                     let documentID = newUser.documentID
                     
-                    newUser.setData(["firstName" : firstName, "lastName": lastName, "phoneNumber": phoneNumber, "email": email ,"timeStamp":"Date()", "id": documentID, "status": "Red or Green"])
+                    newUser.setData(["firstName" : firstName, "lastName": lastName, "phoneNumber": phoneNumber, "email": email ,"timeStamp": Date(), "id": documentID])
                     
-                    // Save documentID into userDefault
-                    UserDefaults.standard.set(documentID, forKey: "myID")
+                    //Creating local data
+                    self.userController.createUser(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, id: documentID)
+                    
+                    
+                    // Save documentID into userDefault -> basic persistence above will save documentID as id
+                    //UserDefaults.standard.set(documentID, forKey: "myID")
                     
                     // to profile VC
                     self.pushProfileVC()
@@ -177,6 +183,9 @@ class SignUpViewController: UIViewController {
     
     func pushProfileVC() {
         let profileVC = ProfileViewConroller()
+        guard let user = self.userController.user else {return}
+        profileVC.user = user
+        profileVC.userController = self.userController
         navigationController?.pushViewController(profileVC, animated: true)
     }
     
