@@ -48,8 +48,8 @@ class CheckSkillViewController : UIViewController {
             self.userController.user?.skills = self.addSkillList
             self.userController.saveToPersistentStore()
         }
-        
     }
+    
     //lifeCycle
     override func viewDidLoad() {
         self.view.backgroundColor = .white
@@ -65,7 +65,6 @@ class CheckSkillViewController : UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
         
     }
     
