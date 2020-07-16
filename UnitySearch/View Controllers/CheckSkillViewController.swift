@@ -65,11 +65,12 @@ class CheckSkillViewController : UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        setNavigationBackButton(onView: self, in: goBackBtn, bool: false)
+        
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        setNavigationBackButton(onView: self, in: goBackBtn, bool: false)
         saveBtn.isHidden = true
     }
     
