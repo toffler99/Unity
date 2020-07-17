@@ -142,6 +142,19 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
         skillTableView.reloadData()
         print("skill List \(skillList)")
     }
+    
+    @objc func tapStatusSwitch() {
+        userController = UserController()
+        let isOn = statusSwitch.isOn
+        let db = Firestore.firestore()
+        //guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
+        guard let user = self.userController!.user else {return}
+        let useridPath = db.collection("users").document("\(user.id)")
+        useridPath.updateData(["status" : isOn])
+        //adding skills into local
+        self.userController!.user?.status = isOn
+        self.userController!.saveToPersistentStore()
+    }
 }
 
 extension ProfileViewConroller {
@@ -270,6 +283,7 @@ extension ProfileViewConroller {
         statusSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
         statusSwitch.heightAnchor.constraint(equalToConstant: 12).isActive = true
         statusSwitch.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        statusSwitch.addTarget(self, action: #selector(tapStatusSwitch), for: .touchUpInside)
         
         skillLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
         skillLB.topAnchor.constraint(equalTo: statusLB.bottomAnchor, constant: 12).isActive = true
@@ -324,3 +338,4 @@ extension ProfileViewConroller : UITableViewDataSource {
         return cell
     }
 }
+
