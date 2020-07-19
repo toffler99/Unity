@@ -105,11 +105,12 @@ class CheckSkillViewController : UIViewController {
     }
     
     @objc func saveSkill() {
-        updateSkillList()
-        self.selectSkillDelegate.selectSkillDelegate(skillList: addSkillList)
+        DispatchQueue.main.async {
+            self.updateSkillList()
+        }
+        self.selectSkillDelegate.selectSkillDelegate(skillList: self.addSkillList)
         self.navigationController?.popViewController(animated: true)
     }
-    
 }
 
 extension CheckSkillViewController : UITableViewDelegate {
