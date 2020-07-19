@@ -74,7 +74,6 @@ extension UIViewController {
             item.image = UIImage(named: "leftarrow")
             item.contentMode = .scaleAspectFill
             item.isUserInteractionEnabled = true
-        
         } else {
             item.isHidden = true
             item.removeGestureRecognizer(tapBackBtn)
@@ -84,6 +83,35 @@ extension UIViewController {
     @objc func popVC() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func setEditButton(onView : UIViewController,in item : UIButton = UIButton() ,bool : Bool) {
+        if bool {
+            item.translatesAutoresizingMaskIntoConstraints = false
+            item.isHidden = false
+            let constBackBtn : [NSLayoutConstraint] = [NSLayoutConstraint(item: item, attribute: .width, relatedBy: .equal,
+                                                                          toItem: nil,
+                                                                          attribute: .width, multiplier: 1, constant: 50),
+                                                       NSLayoutConstraint(item: item, attribute: .height, relatedBy: .equal,
+                                                                          toItem: nil,
+                                                                          attribute: .height, multiplier: 1, constant: 25),
+                                                       NSLayoutConstraint(item: item, attribute: .bottom, relatedBy: .equal,
+                                                                          toItem: onView.navigationController?.navigationBar,
+                                                                          attribute: .bottom, multiplier: 1, constant: -12),
+                                                       NSLayoutConstraint(item: item, attribute: .trailing, relatedBy: .equal,
+                                                                          toItem: onView.navigationController?.navigationBar,
+                                                                          attribute: .trailing, multiplier: 1, constant: -12)]
+            onView.navigationController?.navigationBar.addSubview(item)
+            onView.navigationController?.navigationBar.addConstraints(constBackBtn)
+            item.setTitle("edit", for: .normal)
+            item.setTitleColor(.black, for: .normal)
+            item.titleLabel!.font = UIFont(name: "SFProDisplay-Medium", size: 20)
+            item.layer.borderWidth = 0
+            item.isUserInteractionEnabled = true
+        } else {
+            item.isHidden = true
+        }
+    }
+    
 }
 
 

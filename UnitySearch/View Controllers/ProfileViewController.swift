@@ -33,7 +33,7 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     private var goBackBtn : UIImageView = UIImageView()
     private var lineImg : UIImageView!
     private var skillTableView : UITableView!
-    
+    private var isEditingBtn : UIButton = UIButton()
     
     var user: User?
     var userController: UserController?
@@ -50,14 +50,17 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         setNavigationBackButton(onView: self, in: goBackBtn, bool: false)
-        addSubView()
-        setUpLayout()
-        addGesture()
+        setEditButton(onView: self, in: isEditingBtn, bool: true)
+        if lineImg == nil {
+            addSubView()
+            setUpLayout()
+            addGesture()
+        }
         updateViews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        setEditButton(onView: self, in: isEditingBtn, bool: false)
     }
     
     //Updateviews and sync between firebase and local
@@ -232,14 +235,14 @@ extension ProfileViewConroller {
         firstNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
         firstNameTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
         firstNameTF.adjustsFontSizeToFitWidth = true
-        firstNameTF.allowsEditingTextAttributes = false
+        firstNameTF.isUserInteractionEnabled = false
         //firstNameTF.text = "firstName"
         
         lastNameTF.leadingAnchor.constraint(equalTo: firstNameTF.trailingAnchor, constant: 4).isActive = true
         lastNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
         lastNameTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
         lastNameTF.adjustsFontSizeToFitWidth = true
-        lastNameTF.allowsEditingTextAttributes = false
+        lastNameTF.isUserInteractionEnabled = false
         //lastNameTF.text = "lastName"
         
         phoneNumLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
@@ -253,7 +256,7 @@ extension ProfileViewConroller {
         phoneNumTF.topAnchor.constraint(equalTo: firstNameTF.bottomAnchor, constant: 12).isActive = true
         phoneNumTF.widthAnchor.constraint(equalToConstant: 200).isActive = true
         phoneNumTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        phoneNumTF.allowsEditingTextAttributes = false
+        phoneNumTF.isUserInteractionEnabled = false
         //phoneNumTF.text = "010 1234 5678"
         
         emailLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
@@ -267,7 +270,7 @@ extension ProfileViewConroller {
         emailTF.topAnchor.constraint(equalTo: phoneNumTF.bottomAnchor, constant: 12).isActive = true
         emailTF.widthAnchor.constraint(equalToConstant: 240).isActive = true
         emailTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        emailTF.allowsEditingTextAttributes = false
+        emailTF.isUserInteractionEnabled = false
         //emailTF.text = "toffler@google.com"
         
         statusLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
@@ -299,7 +302,7 @@ extension ProfileViewConroller {
         checkBtn.image = UIImage(named: "rightarrow")
         
         skillTableView.separatorStyle = .none
-        skillTableView.backgroundColor = .yellow
+        skillTableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
         skillTableView.topAnchor.constraint(equalTo: skillLB.bottomAnchor, constant: 8).isActive = true
         skillTableView.leadingAnchor.constraint(equalTo: skillLB.leadingAnchor, constant: 12).isActive = true
         skillTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
@@ -313,7 +316,33 @@ extension ProfileViewConroller {
         let checkBtnGesture = UITapGestureRecognizer(target: self, action: #selector(tuchUpInsideCheckBtn))
         checkBtn.addGestureRecognizer(checkBtnGesture)
         checkBtn.isUserInteractionEnabled = true
+        
+        isEditingBtn.addTarget(self, action: #selector(editProfile(sender:)), for: .touchUpInside)
     }
+    
+    @objc func editProfile(sender : UIButton) {
+        if sender.isSelected == false{
+            print("\(sender.isSelected)")
+            sender.setTitle("Save", for: .normal)
+            sender.isSelected = true
+            firstNameTF.isUserInteractionEnabled = true
+            firstNameTF.backgroundColor = .yellow
+            lastNameTF.isUserInteractionEnabled = true
+            phoneNumTF.isUserInteractionEnabled = true
+            emailTF.isUserInteractionEnabled = true
+        } else {
+            print("\(sender.isSelected)")
+            sender.setTitle("Edit", for: .normal)
+            sender.isSelected = false
+            firstNameTF.isUserInteractionEnabled = false
+            firstNameTF.backgroundColor = .clear
+            lastNameTF.isUserInteractionEnabled = false
+            phoneNumTF.isUserInteractionEnabled = false
+            emailTF.isUserInteractionEnabled = false
+        }
+    }
+    
+    
 }
 
 extension ProfileViewConroller : UITableViewDelegate {
@@ -330,9 +359,9 @@ extension ProfileViewConroller : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSkillTableViewCell", for: indexPath) as! ProfileSkillTableViewCell
+        print("skillList count \(skillList[indexPath.row])")
         cell.skillName.text = skillList[indexPath.row]
         cell.skillName.textColor = .black
-        cell.skillName.allowsEditingTextAttributes = false
         cell.selectionStyle = .none
         cell.skillName.font = UIFont(name: "SF-Pro-Display-Medium", size: 30)
         return cell

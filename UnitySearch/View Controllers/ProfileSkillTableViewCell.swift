@@ -44,17 +44,6 @@ class ProfileSkillTableViewCell : UITableViewCell {
         skillName.backgroundColor = .none
         skillName.adjustsFontSizeToFitWidth = true
         skillName.font = UIFont(name: "SFProDisplay-Medium", size: 14)
-        
-//        skillName.textAlignment = .center
-//        skillName.layer.cornerRadius = 14
-//        skillName.clipsToBounds = true
-//        skillName.allowsEditingTextAttributes = false
-//        skillName.autoresizesSubviews = true
-//        skillName.layer.borderColor = UIColor.lightGray.cgColor
-//        skillName.layer.borderWidth = 1
-//        skillName.textColor = .black
-//        skillName.backgroundColor = .white
-//        skillName.isScrollEnabled = false
-
+        skillName.isUserInteractionEnabled = false
     }
 }
