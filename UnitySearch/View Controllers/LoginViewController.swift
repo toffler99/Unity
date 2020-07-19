@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         setNavigationBackButton(onView: self, in: goBackBtn, bool: false)
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
     }
     func setUpElements() {
         //Hide error label
@@ -77,7 +77,13 @@ class LoginViewController: UIViewController {
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
             } else {
-                self.pushProfileVC()
+                let uid = result?.user.uid
+                switch uid {
+                case "jRkJgeiZQvS7cTgJWqYj4FlBVJG3":
+                    self.pushAdminVC()
+                default:
+                    self.pushProfileVC()
+                }
             }
         }
         
@@ -97,5 +103,10 @@ class LoginViewController: UIViewController {
         profileVC.user = user
         profileVC.userController = userController
         navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    func pushAdminVC() {
+        let adminVC = AdminViewController()
+        navigationController?.pushViewController(adminVC, animated: true)
     }
 }
