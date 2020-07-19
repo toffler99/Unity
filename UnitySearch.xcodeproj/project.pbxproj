@@ -28,6 +28,7 @@
 		626C878324BB14BF0078FA28 /* ProfileSkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C878224BB14BF0078FA28 /* ProfileSkillTableViewCell.swift */; };
 		626C878524BD517B0078FA28 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C878424BD517B0078FA28 /* CustomTextField.swift */; };
 		626C878824BD56EE0078FA28 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 626C878724BD56EE0078FA28 /* SFProDisplay-Medium.otf */; };
+		62E66E4624C48159009EECD1 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E66E4524C48159009EECD1 /* AdminViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		626C878224BB14BF0078FA28 /* ProfileSkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSkillTableViewCell.swift; sourceTree = "<group>"; };
 		626C878424BD517B0078FA28 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		626C878724BD56EE0078FA28 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
+		62E66E4524C48159009EECD1 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		6E577872E1714A698B75D8A5 /* Pods_UnitySearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitySearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2E57A4CD0725A92D41F7137 /* Pods-UnitySearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitySearch.release.xcconfig"; path = "Target Support Files/Pods-UnitySearch/Pods-UnitySearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 				626C878224BB14BF0078FA28 /* ProfileSkillTableViewCell.swift */,
 				626C877E24B769F40078FA28 /* CheckSkillViewController.swift */,
 				626C878024B99D490078FA28 /* CheckSkillTableViewCell.swift */,
+				62E66E4524C48159009EECD1 /* AdminViewController.swift */,
 				0B5CEBF524B3E423006BBDDA /* LoginViewController.swift */,
 				0B5CEBF724B3E42E006BBDDA /* HomeViewController.swift */,
 			);
@@ -302,6 +305,7 @@
 				626C877F24B769F40078FA28 /* CheckSkillViewController.swift in Sources */,
 				626C878124B99D490078FA28 /* CheckSkillTableViewCell.swift in Sources */,
 				626C878324BB14BF0078FA28 /* ProfileSkillTableViewCell.swift in Sources */,
+				62E66E4624C48159009EECD1 /* AdminViewController.swift in Sources */,
 				0BF18A7824BFDF760014A616 /* UserController.swift in Sources */,
 				0B5CEBF824B3E42E006BBDDA /* HomeViewController.swift in Sources */,
 				0B5CEC0024B414EF006BBDDA /* Constants.swift in Sources */,

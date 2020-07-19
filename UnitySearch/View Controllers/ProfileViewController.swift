@@ -10,17 +10,18 @@ import Foundation
 import UIKit
 import GDCheckbox
 import Firebase
+import PhoneNumberKit
 
 class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldDelegate {
     
     
     //property
     //first name, last name, email, phoneNum, status, skill
-    private var NameLB : UILabel!
-    private var firstNameTF : UITextField!
-    private var lastNameTF : UITextField!
+    private var nameLB : UILabel!
+    private var firstNameTF : CustomTextField!
+    private var lastNameTF : CustomTextField!
     private var emailLB : UILabel!
-    private var emailTF : UITextField!
+    private var emailTF : CustomTextField!
     private var phoneNumLB : UILabel!
     private var phoneNumTF : UITextField!
     private var saveBtn : UILabel!
@@ -221,11 +222,11 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
 
 extension ProfileViewConroller {
     func addSubView() {
-        NameLB = UILabel()
-        firstNameTF = UITextField()
-        lastNameTF = UITextField()
+        nameLB = UILabel()
+        firstNameTF = CustomTextField()
+        lastNameTF = CustomTextField()
         emailLB = UILabel()
-        emailTF = UITextField()
+        emailTF = CustomTextField()
         phoneNumLB = UILabel()
         phoneNumTF = UITextField()
         saveBtn = UILabel()
@@ -237,7 +238,7 @@ extension ProfileViewConroller {
         skillLB = UILabel()
         skillTableView = UITableView()
         
-        NameLB.translatesAutoresizingMaskIntoConstraints = false
+        nameLB.translatesAutoresizingMaskIntoConstraints = false
         firstNameTF.translatesAutoresizingMaskIntoConstraints = false
         lastNameTF.translatesAutoresizingMaskIntoConstraints = false
         emailLB.translatesAutoresizingMaskIntoConstraints = false
@@ -253,7 +254,7 @@ extension ProfileViewConroller {
         skillLB.translatesAutoresizingMaskIntoConstraints = false
         skillTableView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(NameLB)
+        view.addSubview(nameLB)
         view.addSubview(firstNameTF)
         view.addSubview(lastNameTF)
         view.addSubview(emailLB)
@@ -283,16 +284,18 @@ extension ProfileViewConroller {
         lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
         lineImg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
-        NameLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
-        NameLB.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
-        NameLB.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        NameLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        NameLB.text = "n:"
-        NameLB.textAlignment = .left
+        nameLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
+        nameLB.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
+        nameLB.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        nameLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        nameLB.text = "n:"
+        nameLB.textAlignment = .left
         
-        firstNameTF.leadingAnchor.constraint(equalTo: NameLB.trailingAnchor, constant: 4).isActive = true
+        firstNameTF.leadingAnchor.constraint(equalTo: nameLB.trailingAnchor, constant: 4).isActive = true
         firstNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
         firstNameTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        firstNameTF.widthAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
+        firstNameTF.backgroundColor = .yellow
         firstNameTF.adjustsFontSizeToFitWidth = true
         firstNameTF.isUserInteractionEnabled = false
         //firstNameTF.text = "firstName"
@@ -305,7 +308,7 @@ extension ProfileViewConroller {
         //lastNameTF.text = "lastName"
         
         phoneNumLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
-        phoneNumLB.topAnchor.constraint(equalTo: NameLB.bottomAnchor, constant: 12).isActive = true
+        phoneNumLB.topAnchor.constraint(equalTo: nameLB.bottomAnchor, constant: 12).isActive = true
         phoneNumLB.widthAnchor.constraint(equalToConstant: 12).isActive = true
         phoneNumLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
         phoneNumLB.text = "p:"
