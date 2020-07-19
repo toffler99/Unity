@@ -322,7 +322,6 @@ extension ProfileViewConroller {
     
     @objc func editProfile(sender : UIButton) {
         if sender.isSelected == false{
-            print("\(sender.isSelected)")
             sender.setTitle("Save", for: .normal)
             sender.isSelected = true
             firstNameTF.isUserInteractionEnabled = true
