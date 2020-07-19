@@ -36,7 +36,7 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     private var isEditingBtn : UIButton = UIButton()
     
     var user: User?
-    var userController: UserController?
+    var userController: UserController = UserController()
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = false
@@ -97,32 +97,32 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
              //compare firebase and local store -> there is another way with UserRepresentation (from firebase) and compare this object to local object with comparison codes at once
                 if user.firstName != firstName {
                     self.firstNameTF.text = firstName
-                    self.userController?.user?.firstName = firstName
-                    self.userController?.saveToPersistentStore()
+                    self.userController.user?.firstName = firstName
+                    self.userController.saveToPersistentStore()
                 }
                 
                 if user.lastName != lastName {
                     self.lastNameTF.text = lastName
-                    self.userController?.user?.lastName = lastName
-                    self.userController?.saveToPersistentStore()
+                    self.userController.user?.lastName = lastName
+                    self.userController.saveToPersistentStore()
                 }
                 
                 if user.email != email {
                     self.emailTF.text = email
-                    self.userController?.user?.email = email
-                    self.userController?.saveToPersistentStore()
+                    self.userController.user?.email = email
+                    self.userController.saveToPersistentStore()
                 }
                 
                 if user.phoneNumber != phoneNumber {
                     self.phoneNumTF.text = phoneNumber
-                    self.userController?.user?.phoneNumber = phoneNumber
-                    self.userController?.saveToPersistentStore()
+                    self.userController.user?.phoneNumber = phoneNumber
+                    self.userController.saveToPersistentStore()
                 }
                 
                 if localSkills != skills {
                     self.skillList = skills
-                    self.userController?.user?.skills? = skills
-                    self.userController?.saveToPersistentStore()
+                    self.userController.user?.skills? = skills
+                    self.userController.saveToPersistentStore()
                 }
                 //print(data)
                 print(skills)
@@ -147,16 +147,15 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
     }
     
     @objc func tapStatusSwitch() {
-        userController = UserController()
         let isOn = statusSwitch.isOn
         let db = Firestore.firestore()
         //guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
-        guard let user = self.userController!.user else {return}
+        guard let user = self.userController.user else {return}
         let useridPath = db.collection("users").document("\(user.id)")
         useridPath.updateData(["status" : isOn])
         //adding skills into local
-        self.userController!.user?.status = isOn
-        self.userController!.saveToPersistentStore()
+        self.userController.user?.status = isOn
+        self.userController.saveToPersistentStore()
     }
 }
 
@@ -325,7 +324,6 @@ extension ProfileViewConroller {
             sender.setTitle("Save", for: .normal)
             sender.isSelected = true
             firstNameTF.isUserInteractionEnabled = true
-            firstNameTF.backgroundColor = .yellow
             lastNameTF.isUserInteractionEnabled = true
             phoneNumTF.isUserInteractionEnabled = true
             emailTF.isUserInteractionEnabled = true
@@ -338,9 +336,30 @@ extension ProfileViewConroller {
             lastNameTF.isUserInteractionEnabled = false
             phoneNumTF.isUserInteractionEnabled = false
             emailTF.isUserInteractionEnabled = false
+            saveProfileData()
         }
     }
     
+    func saveProfileData() {
+        let firstN = firstNameTF.text ?? ""
+        let lastN = lastNameTF.text ?? ""
+        let phoneNum = phoneNumTF.text ?? ""
+        let email = emailTF.text ?? ""
+        let db = Firestore.firestore()
+        //guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
+        guard let user = self.userController.user else {return}
+        let useridPath = db.collection("users").document("\(user.id)")
+        useridPath.updateData(["firstName" : firstN])
+        useridPath.updateData(["lastName" : lastN])
+        useridPath.updateData(["phoneNumber" : phoneNum])
+        useridPath.updateData(["email" : email])
+        //adding skills into local
+        self.userController.user?.firstName = firstN
+        self.userController.user?.lastName = lastN
+        self.userController.user?.phoneNumber = phoneNum
+        self.userController.user?.email = email
+        self.userController.saveToPersistentStore()
+    }
     
 }
 
