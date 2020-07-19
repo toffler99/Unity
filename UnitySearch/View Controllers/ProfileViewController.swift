@@ -360,7 +360,6 @@ extension ProfileViewConroller {
         self.userController.user?.email = email
         self.userController.saveToPersistentStore()
     }
-    
 }
 
 extension ProfileViewConroller : UITableViewDelegate {
