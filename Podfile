@@ -12,5 +12,6 @@ target 'UnitySearch' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
 	pod 'GDCheckbox'
+	pod 'PhoneNumberKit'
 
 end

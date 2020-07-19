@@ -11,7 +11,7 @@ import UIKit
 import GDCheckbox
 import Firebase
 
-class ProfileViewConroller : UIViewController, SelectSkillDelegate {
+class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldDelegate {
     
     
     //property
@@ -157,6 +157,66 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate {
         self.userController.user?.status = isOn
         self.userController.saveToPersistentStore()
     }
+    
+    func addGesture() {
+        let checkBtnGesture = UITapGestureRecognizer(target: self, action: #selector(tuchUpInsideCheckBtn))
+        checkBtn.addGestureRecognizer(checkBtnGesture)
+        checkBtn.isUserInteractionEnabled = true
+        
+        isEditingBtn.addTarget(self, action: #selector(editProfile(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func editProfile(sender : UIButton) {
+        if sender.isSelected == false{
+            sender.setTitle("Save", for: .normal)
+            sender.isSelected = true
+            firstNameTF.isUserInteractionEnabled = true
+            lastNameTF.isUserInteractionEnabled = true
+            phoneNumTF.isUserInteractionEnabled = true
+            emailTF.isUserInteractionEnabled = true
+        } else {
+            print("\(sender.isSelected)")
+            sender.setTitle("Edit", for: .normal)
+            sender.isSelected = false
+            firstNameTF.isUserInteractionEnabled = false
+            firstNameTF.backgroundColor = .clear
+            lastNameTF.isUserInteractionEnabled = false
+            phoneNumTF.isUserInteractionEnabled = false
+            emailTF.isUserInteractionEnabled = false
+            saveProfileData()
+        }
+    }
+    
+    func saveProfileData() {
+        let firstN = firstNameTF.text ?? ""
+        let lastN = lastNameTF.text ?? ""
+        let phoneNum = phoneNumTF.text ?? ""
+        let email = emailTF.text ?? ""
+        let db = Firestore.firestore()
+        //guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
+        guard let user = self.userController.user else {return}
+        let useridPath = db.collection("users").document("\(user.id)")
+        useridPath.updateData(["firstName" : firstN])
+        useridPath.updateData(["lastName" : lastN])
+        useridPath.updateData(["phoneNumber" : phoneNum])
+        useridPath.updateData(["email" : email])
+        //adding skills into local
+        self.userController.user?.firstName = firstN
+        self.userController.user?.lastName = lastN
+        self.userController.user?.phoneNumber = phoneNum
+        self.userController.user?.email = email
+        self.userController.saveToPersistentStore()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == phoneNumTF {
+            
+        }
+        return true
+    }
+    
+    
+    
 }
 
 extension ProfileViewConroller {
@@ -309,56 +369,6 @@ extension ProfileViewConroller {
         skillTableView.delegate = self
         skillTableView.dataSource = self
         skillTableView.register(ProfileSkillTableViewCell.self, forCellReuseIdentifier: "ProfileSkillTableViewCell")
-    }
-    
-    func addGesture() {
-        let checkBtnGesture = UITapGestureRecognizer(target: self, action: #selector(tuchUpInsideCheckBtn))
-        checkBtn.addGestureRecognizer(checkBtnGesture)
-        checkBtn.isUserInteractionEnabled = true
-        
-        isEditingBtn.addTarget(self, action: #selector(editProfile(sender:)), for: .touchUpInside)
-    }
-    
-    @objc func editProfile(sender : UIButton) {
-        if sender.isSelected == false{
-            sender.setTitle("Save", for: .normal)
-            sender.isSelected = true
-            firstNameTF.isUserInteractionEnabled = true
-            lastNameTF.isUserInteractionEnabled = true
-            phoneNumTF.isUserInteractionEnabled = true
-            emailTF.isUserInteractionEnabled = true
-        } else {
-            print("\(sender.isSelected)")
-            sender.setTitle("Edit", for: .normal)
-            sender.isSelected = false
-            firstNameTF.isUserInteractionEnabled = false
-            firstNameTF.backgroundColor = .clear
-            lastNameTF.isUserInteractionEnabled = false
-            phoneNumTF.isUserInteractionEnabled = false
-            emailTF.isUserInteractionEnabled = false
-            saveProfileData()
-        }
-    }
-    
-    func saveProfileData() {
-        let firstN = firstNameTF.text ?? ""
-        let lastN = lastNameTF.text ?? ""
-        let phoneNum = phoneNumTF.text ?? ""
-        let email = emailTF.text ?? ""
-        let db = Firestore.firestore()
-        //guard let userDefualtID = UserDefaults.standard.object(forKey: "myID") else {return}
-        guard let user = self.userController.user else {return}
-        let useridPath = db.collection("users").document("\(user.id)")
-        useridPath.updateData(["firstName" : firstN])
-        useridPath.updateData(["lastName" : lastN])
-        useridPath.updateData(["phoneNumber" : phoneNum])
-        useridPath.updateData(["email" : email])
-        //adding skills into local
-        self.userController.user?.firstName = firstN
-        self.userController.user?.lastName = lastN
-        self.userController.user?.phoneNumber = phoneNum
-        self.userController.user?.email = email
-        self.userController.saveToPersistentStore()
     }
 }
 
