@@ -50,17 +50,17 @@ extension CheckSkillTableViewCell {
         backView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         backView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         
-        checkBox.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 8).isActive = true
+        checkBox.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 2).isActive = true
         checkBox.centerYAnchor.constraint(equalTo: backView.centerYAnchor, constant: 0).isActive = true
         checkBox.widthAnchor.constraint(equalToConstant: 24).isActive = true
         checkBox.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        skillName.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 8).isActive = true
-        skillName.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: 4).isActive = true
+        skillName.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 4).isActive = true
+        skillName.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -4).isActive = true
         skillName.centerYAnchor.constraint(equalTo: backView.centerYAnchor, constant: 0).isActive = true
         skillName.heightAnchor.constraint(equalToConstant: 36).isActive = true
         skillName.textAlignment = .left
-        skillName.font = UIFont.boldSystemFont(ofSize: 16)
+        skillName.font = UIFont(name: "SFProDisplay-Bold", size: 16)
     
     }
     
@@ -75,13 +75,13 @@ extension CheckSkillTableViewCell {
         checkBox.shouldAnimate = false
 
         // Color of the check mark / fill area -- no matter if isCurcular is on or off
-        checkBox.checkColor = UIColor.black
+        checkBox.checkColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
 
         // Width of the check mark / fill area -- no matter if isCurcular is on or off
-        checkBox.checkWidth = 1
+        checkBox.checkWidth = 2
 
         // Color of container border. If shouldFillContainer is set to true, container background also will be override with this color when CheckBox / Radio Button is selected.
-        checkBox.containerColor = #colorLiteral(red: 0.1843137255, green: 0.1411764706, blue: 0.1333333333, alpha: 0.199261582)
+        checkBox.containerColor = .clear
 
         // Determine if container should be filled when selected
         // Note: if set to true, it will override `baseColor` when control is selected

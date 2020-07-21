@@ -32,14 +32,14 @@ class ProfileSkillTableViewCell : UITableViewCell {
         skillName.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(skillName)
         
-        skillName.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4).isActive = true
+        skillName.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         skillName.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
-        skillName.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        skillName.heightAnchor.constraint(equalToConstant: 26).isActive = true
         
         skillName.minimumFontSize = 16
         skillName.layer.cornerRadius = 14
         skillName.layer.borderWidth = 1
-        skillName.layer.borderColor = UIColor.lightGray.cgColor
+        skillName.layer.borderColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
         skillName.textAlignment = .center
         skillName.backgroundColor = .none
         skillName.adjustsFontSizeToFitWidth = true

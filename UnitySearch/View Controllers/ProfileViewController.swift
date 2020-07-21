@@ -35,6 +35,9 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
     private var lineImg : UIImageView!
     private var skillTableView : UITableView!
     private var isEditingBtn : UIButton = UIButton()
+    private var yLabel : UILabel!
+    private var nLabel : UILabel!
+    private var skillBackView : UIView!
     
     var user: User?
     var userController: UserController = UserController()
@@ -44,6 +47,7 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationItem.title = "Profile"
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)]
         self.view.backgroundColor = .white
         self.navigationItem.hidesBackButton = true
     }
@@ -73,7 +77,12 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
         self.lastNameTF.text = user.lastName
         self.emailTF.text = user.email
         self.phoneNumTF.text = user.phoneNumber
-        
+        switch user.status {
+        case true:
+            statusSwitch.isOn = true
+        default:
+            statusSwitch.isOn = false
+        }
         guard let localSkills = user.skills else {return}
         self.skillList = localSkills
         
@@ -228,7 +237,7 @@ extension ProfileViewConroller {
         emailLB = UILabel()
         emailTF = CustomTextField()
         phoneNumLB = UILabel()
-        phoneNumTF = UITextField()
+        phoneNumTF = CustomTextField()
         saveBtn = UILabel()
         editBtn = UIImageView()
         lineImg = UIImageView()
@@ -237,6 +246,9 @@ extension ProfileViewConroller {
         checkBtn = UIImageView()
         skillLB = UILabel()
         skillTableView = UITableView()
+        yLabel = UILabel()
+        nLabel = UILabel()
+        skillBackView = UIView()
         
         nameLB.translatesAutoresizingMaskIntoConstraints = false
         firstNameTF.translatesAutoresizingMaskIntoConstraints = false
@@ -253,6 +265,9 @@ extension ProfileViewConroller {
         checkBtn.translatesAutoresizingMaskIntoConstraints = false
         skillLB.translatesAutoresizingMaskIntoConstraints = false
         skillTableView.translatesAutoresizingMaskIntoConstraints = false
+        yLabel.translatesAutoresizingMaskIntoConstraints = false
+        nLabel.translatesAutoresizingMaskIntoConstraints = false
+        skillBackView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(nameLB)
         view.addSubview(firstNameTF)
@@ -266,9 +281,13 @@ extension ProfileViewConroller {
         view.addSubview(lineImg)
         view.addSubview(statusLB)
         view.addSubview(statusSwitch)
-        view.addSubview(checkBtn)
-        view.addSubview(skillLB)
+        view.addSubview(skillBackView)
+        skillBackView.addSubview(checkBtn)
+        skillBackView.addSubview(skillLB)
         view.addSubview(skillTableView)
+        view.addSubview(yLabel)
+        view.addSubview(nLabel)
+        
     }
     
     func setUpLayout() {
@@ -284,88 +303,122 @@ extension ProfileViewConroller {
         lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
         lineImg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
-        nameLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
+        nameLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 1).isActive = true
         nameLB.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
-        nameLB.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        nameLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        nameLB.text = "n:"
+        nameLB.widthAnchor.constraint(equalToConstant: 1).isActive = true
+        nameLB.heightAnchor.constraint(equalToConstant: 64).isActive = true
         nameLB.textAlignment = .left
         
-        firstNameTF.leadingAnchor.constraint(equalTo: nameLB.trailingAnchor, constant: 4).isActive = true
+        firstNameTF.leadingAnchor.constraint(equalTo: nameLB.trailingAnchor, constant: 1).isActive = true
         firstNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
-        firstNameTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        firstNameTF.widthAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
-        firstNameTF.backgroundColor = .yellow
+        firstNameTF.heightAnchor.constraint(equalToConstant: 64).isActive = true
+//        firstNameTF.widthAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+        firstNameTF.font = UIFont(name: "SFProDisplay-Bold", size: 42)
+        firstNameTF.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
         firstNameTF.adjustsFontSizeToFitWidth = true
         firstNameTF.isUserInteractionEnabled = false
         //firstNameTF.text = "firstName"
         
-        lastNameTF.leadingAnchor.constraint(equalTo: firstNameTF.trailingAnchor, constant: 4).isActive = true
+        lastNameTF.leadingAnchor.constraint(equalTo: firstNameTF.trailingAnchor, constant: 0).isActive = true
         lastNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: nameLbPadding).isActive = true
-        lastNameTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        lastNameTF.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        lastNameTF.font = UIFont(name: "SFProDisplay-Bold", size: 42)
+        lastNameTF.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
         lastNameTF.adjustsFontSizeToFitWidth = true
         lastNameTF.isUserInteractionEnabled = false
         //lastNameTF.text = "lastName"
         
         phoneNumLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
-        phoneNumLB.topAnchor.constraint(equalTo: nameLB.bottomAnchor, constant: 12).isActive = true
-        phoneNumLB.widthAnchor.constraint(equalToConstant: 12).isActive = true
-        phoneNumLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        phoneNumLB.topAnchor.constraint(equalTo: nameLB.bottomAnchor, constant: 9).isActive = true
+        phoneNumLB.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        phoneNumLB.heightAnchor.constraint(equalToConstant: 28).isActive = true
         phoneNumLB.text = "p:"
+        phoneNumLB.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
         phoneNumLB.textAlignment = .left
+        phoneNumLB.font = UIFont(name: "SFProDisplay-Bold", size: 18)
+        phoneNumLB.backgroundColor = .clear
         
-        phoneNumTF.leadingAnchor.constraint(equalTo: phoneNumLB.trailingAnchor, constant: 4).isActive = true
+        phoneNumTF.leadingAnchor.constraint(equalTo: phoneNumLB.trailingAnchor, constant: 2).isActive = true
         phoneNumTF.topAnchor.constraint(equalTo: firstNameTF.bottomAnchor, constant: 12).isActive = true
         phoneNumTF.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        phoneNumTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        phoneNumTF.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        phoneNumTF.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
+        phoneNumTF.font = UIFont(name: "SFProDisplay-Medium", size: 18)
         phoneNumTF.isUserInteractionEnabled = false
         //phoneNumTF.text = "010 1234 5678"
         
         emailLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
-        emailLB.topAnchor.constraint(equalTo: phoneNumLB.bottomAnchor, constant: 12).isActive = true
-        emailLB.widthAnchor.constraint(equalToConstant: 12).isActive = true
-        emailLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        emailLB.topAnchor.constraint(equalTo: phoneNumLB.bottomAnchor, constant: 5).isActive = true
+        emailLB.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        emailLB.heightAnchor.constraint(equalToConstant: 28).isActive = true
         emailLB.text = "e:"
+        emailLB.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
         emailLB.textAlignment = .left
+        emailLB.font = UIFont(name: "SFProDisplay-Bold", size: 18)
         
-        emailTF.leadingAnchor.constraint(equalTo: emailLB.trailingAnchor, constant: 4).isActive = true
-        emailTF.topAnchor.constraint(equalTo: phoneNumTF.bottomAnchor, constant: 12).isActive = true
+        emailTF.leadingAnchor.constraint(equalTo: emailLB.trailingAnchor, constant: 2).isActive = true
+        emailTF.topAnchor.constraint(equalTo: phoneNumTF.bottomAnchor, constant: 2).isActive = true
         emailTF.widthAnchor.constraint(equalToConstant: 240).isActive = true
-        emailTF.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        emailTF.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        emailTF.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
+        emailTF.font = UIFont(name: "SFProDisplay-Medium", size: 18)
         emailTF.isUserInteractionEnabled = false
         //emailTF.text = "toffler@google.com"
         
         statusLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
         statusLB.topAnchor.constraint(equalTo: emailLB.bottomAnchor, constant: 12).isActive = true
-        statusLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        statusLB.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        statusLB.text = "looking for a job"
-        statusLB.font = UIFont(name: "SFProDisplay-Medium", size: 17)
-        statusLB.backgroundColor = .yellow
+        statusLB.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        statusLB.widthAnchor.constraint(equalToConstant: 230).isActive = true
+        statusLB.text = "looking for opportunities?"
+        statusLB.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
+        statusLB.font = UIFont(name: "SFProDisplay-Bold", size: 18)
+        statusLB.backgroundColor = .clear
         statusLB.textAlignment = .left
         
-        statusSwitch.topAnchor.constraint(equalTo: statusLB.topAnchor, constant: 0).isActive = true
-        statusSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
-        statusSwitch.heightAnchor.constraint(equalToConstant: 12).isActive = true
-        statusSwitch.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        yLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        yLabel.bottomAnchor.constraint(equalTo: statusLB.bottomAnchor, constant: 0).isActive = true
+        yLabel.heightAnchor.constraint(equalToConstant: 42).isActive = true
+        yLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        yLabel.text = "Y"
+        yLabel.font = UIFont(name: "SFProDisplay-Bold", size: 18)
+        
+        statusSwitch.centerYAnchor.constraint(equalTo: statusLB.centerYAnchor, constant: -4).isActive = true
+        statusSwitch.trailingAnchor.constraint(equalTo: yLabel.leadingAnchor, constant: -16).isActive = true
+        statusSwitch.heightAnchor.constraint(equalToConstant: 21).isActive = true
+        statusSwitch.widthAnchor.constraint(equalToConstant: 42).isActive = true
         statusSwitch.addTarget(self, action: #selector(tapStatusSwitch), for: .touchUpInside)
         
-        skillLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
-        skillLB.topAnchor.constraint(equalTo: statusLB.bottomAnchor, constant: 12).isActive = true
-        skillLB.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        nLabel.trailingAnchor.constraint(equalTo: statusSwitch.leadingAnchor, constant: -2).isActive = true
+        nLabel.bottomAnchor.constraint(equalTo: statusLB.bottomAnchor, constant: 0).isActive = true
+        nLabel.heightAnchor.constraint(equalToConstant: 42).isActive = true
+        nLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        nLabel.text = "N"
+        nLabel.font = UIFont(name: "SFProDisplay-Bold", size: 18)
+        
+        skillBackView.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 0).isActive = true
+        skillBackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        skillBackView.topAnchor.constraint(equalTo: statusLB.bottomAnchor, constant: 6).isActive = true
+        skillBackView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        skillBackView.backgroundColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
+        
+        skillLB.leadingAnchor.constraint(equalTo: skillBackView.leadingAnchor, constant: 4).isActive = true
+        skillLB.topAnchor.constraint(equalTo: skillBackView.topAnchor, constant: 0).isActive = true
+        skillLB.bottomAnchor.constraint(equalTo: skillBackView.bottomAnchor, constant: 0).isActive = true
         skillLB.widthAnchor.constraint(equalToConstant: 56).isActive = true
         skillLB.text = "skill"
+        skillLB.textColor = .white
+        skillLB.font = UIFont(name: "SFProDisplay-Bold", size: 24)
         skillLB.textAlignment = .left
         
-        checkBtn.centerYAnchor.constraint(equalTo: skillLB.centerYAnchor, constant: 0).isActive = true
-        checkBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-        checkBtn.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        checkBtn.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        checkBtn.image = UIImage(named: "rightarrow")
+        checkBtn.centerYAnchor.constraint(equalTo: skillBackView.centerYAnchor, constant: 0).isActive = true
+        checkBtn.trailingAnchor.constraint(equalTo: skillBackView.trailingAnchor, constant: -16).isActive = true
+        checkBtn.widthAnchor.constraint(equalToConstant: 28).isActive = true
+        checkBtn.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        checkBtn.image = UIImage(named: "rightarrow_white")
         
         skillTableView.separatorStyle = .none
-        skillTableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
-        skillTableView.topAnchor.constraint(equalTo: skillLB.bottomAnchor, constant: 8).isActive = true
+        skillTableView.backgroundColor = .clear
+        skillTableView.topAnchor.constraint(equalTo: skillLB.bottomAnchor, constant: 6).isActive = true
         skillTableView.leadingAnchor.constraint(equalTo: skillLB.leadingAnchor, constant: 12).isActive = true
         skillTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         skillTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
@@ -377,7 +430,7 @@ extension ProfileViewConroller {
 
 extension ProfileViewConroller : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 32
+        return 28
     }
 }
 
