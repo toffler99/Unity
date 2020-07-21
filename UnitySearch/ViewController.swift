@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var recruiterButton: UIButton!
     
 
     override func viewDidLoad() {
@@ -19,9 +20,11 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         setUpElements()
     }
+    
     func setUpElements() {
         Utilitites.styleFilledButton(signUpButton)
         Utilitites.styleHollowButton(loginButton)
+        Utilitites.styleRecruiterButton(recruiterButton)
     }
 
 }

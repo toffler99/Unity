@@ -1,8 +1,8 @@
 //
-//  LoginViewController.swift
+//  RecruiterLoginViewController.swift
 //  UnitySearch
 //
-//  Created by Dongwoo Pae on 7/6/20.
+//  Created by Dongwoo Pae on 7/20/20.
 //  Copyright © 2020 Dongwoo Pae. All rights reserved.
 //
 
@@ -10,17 +10,17 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class LoginViewController: UIViewController {
+class RecruiterLoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var errorLabel: UILabel!
-    
     @IBOutlet weak var loginButton: UIButton!
+    
+
     var goBackBtn : UIImageView = UIImageView()
     
-    var userController = UserController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .automatic
-        self.navigationItem.title = "Login"
+        self.navigationItem.title = "Recruiter Login"
         self.navigationItem.hidesBackButton = false
         self.view.backgroundColor = .white
         setUpElements()
@@ -77,25 +77,10 @@ class LoginViewController: UIViewController {
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
             } else {
-                let uid = result?.user.uid
-                switch uid {
-                case "jRkJgeiZQvS7cTgJWqYj4FlBVJG3":
-                    self.pushAdminVC()
-                default:
-                    self.pushProfileVC()
-                }
+                self.pushAdminVC()
             }
         }
         
-    }
-    
-    
-    func pushProfileVC() {
-        let profileVC = ProfileViewConroller()
-        guard let user = self.userController.user else {return}
-        profileVC.user = user
-        profileVC.userController = userController
-        navigationController?.pushViewController(profileVC, animated: true)
     }
     
     func pushAdminVC() {
@@ -103,3 +88,4 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(adminVC, animated: true)
     }
 }
+

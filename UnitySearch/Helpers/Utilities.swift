@@ -26,6 +26,12 @@ class Utilitites {
         // Add the line to the textfield
         textfield.layer.addSublayer(bottomLine)
     }
+    
+    static func styleRecruiterButton(_ button: UIButton) {
+        button.layer.backgroundColor = UIColor.orange.cgColor
+        button.layer.cornerRadius = 25.0
+        button.tintColor = UIColor.white
+    }
 
     static func styleFilledButton(_ button : UIButton) {
         // Filled rounded corner style
