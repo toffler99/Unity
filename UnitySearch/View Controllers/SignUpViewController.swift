@@ -99,15 +99,17 @@ class SignUpViewController: UIViewController {
         mainTextView.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 8).isActive = true
         mainTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         mainTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        mainTextView.adjustsFontForContentSizeCategory = true
-        mainTextView.backgroundColor = .yellow
+//        mainTextView.adjustsFontForContentSizeCategory = true
+        mainTextView.backgroundColor = .red
         mainTextView.textAlignment = .left
+        mainTextView.isUserInteractionEnabled = false
         mainTextView.text = "Unity was founded in 2010 with one goal in mind: to create long-term partnerships for accounting and finance professionals by focusing on the needs and aspirations of the individual who matters most… you."
         
+        elementsStackView.topAnchor.constraint(equalTo: mainTextView.bottomAnchor, constant: 4).isActive = true
         elementsStackView.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
-        elementsStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+//        elementsStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32).isActive = true
         elementsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-        elementsStackView.axis = .horizontal
+        elementsStackView.axis = .vertical
         
         firstNameTextField.backgroundColor = .yellow
         firstNameTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 1).isActive = true
