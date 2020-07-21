@@ -15,10 +15,10 @@
 		0B2647C324AED990007C4A74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2647C124AED990007C4A74 /* LaunchScreen.storyboard */; };
 		0B5CEBF424B3E3FE006BBDDA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CEBF324B3E3FE006BBDDA /* SignUpViewController.swift */; };
 		0B5CEBF624B3E423006BBDDA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CEBF524B3E423006BBDDA /* LoginViewController.swift */; };
-		0B5CEBF824B3E42E006BBDDA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CEBF724B3E42E006BBDDA /* HomeViewController.swift */; };
 		0B5CEBFC24B3EF5F006BBDDA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CEBFB24B3EF5F006BBDDA /* Utilities.swift */; };
 		0B5CEBFE24B3FE58006BBDDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CEBFD24B3FE57006BBDDA /* GoogleService-Info.plist */; };
-		0B5CEC0024B414EF006BBDDA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CEBFF24B414EF006BBDDA /* Constants.swift */; };
+		0B699D7E24C6ACB6007D5610 /* RecruiterLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B699D7D24C6ACB6007D5610 /* RecruiterLoginViewController.swift */; };
+		0B699D8024C6B9B7007D5610 /* RecruiterSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B699D7F24C6B9B7007D5610 /* RecruiterSignUpViewController.swift */; };
 		0BF18A7524BFDECC0014A616 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF18A7424BFDECC0014A616 /* User.swift */; };
 		0BF18A7824BFDF760014A616 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF18A7724BFDF760014A616 /* UserController.swift */; };
 		62613A3424B597F40064549D /* Pods_UnitySearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E577872E1714A698B75D8A5 /* Pods_UnitySearch.framework */; };
@@ -42,10 +42,10 @@
 		0B2647C424AED990007C4A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B5CEBF324B3E3FE006BBDDA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0B5CEBF524B3E423006BBDDA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		0B5CEBF724B3E42E006BBDDA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0B5CEBFB24B3EF5F006BBDDA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		0B5CEBFD24B3FE57006BBDDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0B5CEBFF24B414EF006BBDDA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0B699D7D24C6ACB6007D5610 /* RecruiterLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterLoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		0B699D7F24C6B9B7007D5610 /* RecruiterSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecruiterSignUpViewController.swift; path = UnitySearch/RecruiterSignUpViewController.swift; sourceTree = SOURCE_ROOT; };
 		0BF18A7424BFDECC0014A616 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = SOURCE_ROOT; };
 		0BF18A7724BFDF760014A616 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		553E5EF9D04F352081F17544 /* Pods-UnitySearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitySearch.debug.xcconfig"; path = "Target Support Files/Pods-UnitySearch/Pods-UnitySearch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,9 +118,10 @@
 				626C878224BB14BF0078FA28 /* ProfileSkillTableViewCell.swift */,
 				626C877E24B769F40078FA28 /* CheckSkillViewController.swift */,
 				626C878024B99D490078FA28 /* CheckSkillTableViewCell.swift */,
-				62E66E4524C48159009EECD1 /* AdminViewController.swift */,
 				0B5CEBF524B3E423006BBDDA /* LoginViewController.swift */,
-				0B5CEBF724B3E42E006BBDDA /* HomeViewController.swift */,
+				62E66E4524C48159009EECD1 /* AdminViewController.swift */,
+				0B699D7D24C6ACB6007D5610 /* RecruiterLoginViewController.swift */,
+				0B699D7F24C6B9B7007D5610 /* RecruiterSignUpViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -129,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				0B5CEBFB24B3EF5F006BBDDA /* Utilities.swift */,
-				0B5CEBFF24B414EF006BBDDA /* Constants.swift */,
 				626C878424BD517B0078FA28 /* CustomTextField.swift */,
 			);
 			path = Helpers;
@@ -295,11 +295,13 @@
 			files = (
 				626C878524BD517B0078FA28 /* CustomTextField.swift in Sources */,
 				0B2647BB24AED98F007C4A74 /* ViewController.swift in Sources */,
+				0B699D7E24C6ACB6007D5610 /* RecruiterLoginViewController.swift in Sources */,
 				0B2647B724AED98F007C4A74 /* AppDelegate.swift in Sources */,
 				0B5CEBFC24B3EF5F006BBDDA /* Utilities.swift in Sources */,
 				0B5CEBF424B3E3FE006BBDDA /* SignUpViewController.swift in Sources */,
 				0B5CEBF624B3E423006BBDDA /* LoginViewController.swift in Sources */,
 				0BF18A7524BFDECC0014A616 /* User.swift in Sources */,
+				0B699D8024C6B9B7007D5610 /* RecruiterSignUpViewController.swift in Sources */,
 				0B2647B924AED98F007C4A74 /* SceneDelegate.swift in Sources */,
 				626C877D24B75BB20078FA28 /* ProfileViewController.swift in Sources */,
 				626C877F24B769F40078FA28 /* CheckSkillViewController.swift in Sources */,
@@ -307,8 +309,6 @@
 				626C878324BB14BF0078FA28 /* ProfileSkillTableViewCell.swift in Sources */,
 				62E66E4624C48159009EECD1 /* AdminViewController.swift in Sources */,
 				0BF18A7824BFDF760014A616 /* UserController.swift in Sources */,
-				0B5CEBF824B3E42E006BBDDA /* HomeViewController.swift in Sources */,
-				0B5CEC0024B414EF006BBDDA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
