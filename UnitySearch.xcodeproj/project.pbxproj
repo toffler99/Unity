@@ -21,6 +21,8 @@
 		0B699D8024C6B9B7007D5610 /* RecruiterSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B699D7F24C6B9B7007D5610 /* RecruiterSignUpViewController.swift */; };
 		0BF18A7524BFDECC0014A616 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF18A7424BFDECC0014A616 /* User.swift */; };
 		0BF18A7824BFDF760014A616 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF18A7724BFDF760014A616 /* UserController.swift */; };
+		6209988F24C7276D004277F8 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6209988E24C7276C004277F8 /* SFProDisplay-Bold.otf */; };
+		6209989224C74FA2004277F8 /* unityLaunch2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6209989124C74FA2004277F8 /* unityLaunch2.png */; };
 		62613A3424B597F40064549D /* Pods_UnitySearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E577872E1714A698B75D8A5 /* Pods_UnitySearch.framework */; };
 		626C877D24B75BB20078FA28 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C877C24B75BB20078FA28 /* ProfileViewController.swift */; };
 		626C877F24B769F40078FA28 /* CheckSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C877E24B769F40078FA28 /* CheckSkillViewController.swift */; };
@@ -49,6 +51,8 @@
 		0BF18A7424BFDECC0014A616 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = SOURCE_ROOT; };
 		0BF18A7724BFDF760014A616 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		553E5EF9D04F352081F17544 /* Pods-UnitySearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitySearch.debug.xcconfig"; path = "Target Support Files/Pods-UnitySearch/Pods-UnitySearch.debug.xcconfig"; sourceTree = "<group>"; };
+		6209988E24C7276C004277F8 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
+		6209989124C74FA2004277F8 /* unityLaunch2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unityLaunch2.png; sourceTree = "<group>"; };
 		626C877C24B75BB20078FA28 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		626C877E24B769F40078FA28 /* CheckSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSkillViewController.swift; sourceTree = "<group>"; };
 		626C878024B99D490078FA28 /* CheckSkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSkillTableViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		0B2647B524AED98F007C4A74 /* UnitySearch */ = {
 			isa = PBXGroup;
 			children = (
+				6209989324C74FA6004277F8 /* LaunchImage */,
 				0BF18A7324BFDEB90014A616 /* Model */,
 				0BF18A7624BFDF5D0014A616 /* Model Controller */,
 				626C878624BD56CF0078FA28 /* Fonts */,
@@ -160,9 +165,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6209989324C74FA6004277F8 /* LaunchImage */ = {
+			isa = PBXGroup;
+			children = (
+				6209989124C74FA2004277F8 /* unityLaunch2.png */,
+			);
+			path = LaunchImage;
+			sourceTree = "<group>";
+		};
 		626C878624BD56CF0078FA28 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				6209988E24C7276C004277F8 /* SFProDisplay-Bold.otf */,
 				626C878724BD56EE0078FA28 /* SFProDisplay-Medium.otf */,
 			);
 			name = Fonts;
@@ -238,6 +252,8 @@
 			files = (
 				0B2647C324AED990007C4A74 /* LaunchScreen.storyboard in Resources */,
 				0B5CEBFE24B3FE58006BBDDA /* GoogleService-Info.plist in Resources */,
+				6209989224C74FA2004277F8 /* unityLaunch2.png in Resources */,
+				6209988F24C7276D004277F8 /* SFProDisplay-Bold.otf in Resources */,
 				0B2647C024AED990007C4A74 /* Assets.xcassets in Resources */,
 				0B2647BE24AED98F007C4A74 /* Main.storyboard in Resources */,
 				626C878824BD56EE0078FA28 /* SFProDisplay-Medium.otf in Resources */,
