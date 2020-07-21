@@ -25,12 +25,14 @@ class Utilitites {
         
         // Add the line to the textfield
         textfield.layer.addSublayer(bottomLine)
+        textfield.font = UIFont(name: "SFProDisplay-Medium", size: 18)
     }
     
     static func styleRecruiterButton(_ button: UIButton) {
         button.layer.backgroundColor = UIColor.orange.cgColor
         button.layer.cornerRadius = 25.0
         button.tintColor = UIColor.white
+        button.titleLabel!.font = UIFont(name: "SFProDisplay-Medium", size: 18)
     }
 
     static func styleFilledButton(_ button : UIButton) {
@@ -38,6 +40,7 @@ class Utilitites {
         button.backgroundColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
         button.layer.cornerRadius = 25.0
         button.tintColor = UIColor.white
+        button.titleLabel!.font = UIFont(name: "SFProDisplay-Medium", size: 18)
     }
     
     static func styleHollowButton(_ button : UIButton) {
@@ -46,6 +49,7 @@ class Utilitites {
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 25.0
         button.tintColor = UIColor.black
+        button.titleLabel!.font = UIFont(name: "SFProDisplay-Medium", size: 18)
     }
     
     static func isPasswordValid(_ password : String) -> Bool {
