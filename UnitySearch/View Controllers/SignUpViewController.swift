@@ -24,24 +24,56 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var errorLabel: UILabel!
+    private var headingText : UILabel!
+    private var mainTextView : UITextView!
+    private var backBtn : UIImageView = UIImageView()
+    private var lineImg : UIImageView!
     
     var userController = UserController()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .automatic
+        self.navigationItem.title = "WHY UNITY"
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)]
+        self.view.backgroundColor = .white
+        self.navigationItem.hidesBackButton = true
         setUpElements()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setNavigationBackButton(onView: self, in: backBtn, bool: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        setNavigationBackButton(onView: self, in: backBtn, bool: false)
+    }
     
     func setUpElements() {
+        let height = self.navigationController?.navigationBar.bounds.height
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let safePadding = window?.safeAreaInsets.top
+        let heightPadding = CGFloat(height!) + CGFloat(safePadding!)
+        
         
         // Hide error label
         errorLabel.alpha = 0
         
         // Style the elements
+        lineImg = UIImageView()
+        headingText = UILabel()
+        mainTextView = UITextView()
         
+        view.addSubview(lineImg)
+        view.addSubview(headingText)
+        view.addSubview(mainTextView)
+        
+        lineImg.translatesAutoresizingMaskIntoConstraints = false
+        headingText.translatesAutoresizingMaskIntoConstraints = false
+        mainTextView.translatesAutoresizingMaskIntoConstraints = false
         elementsStackView.translatesAutoresizingMaskIntoConstraints = false
         firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -49,9 +81,33 @@ class SignUpViewController: UIViewController {
         phoneNumberTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        elementsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        elementsStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        elementsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        lineImg.backgroundColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
+        lineImg.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        lineImg.widthAnchor.constraint(equalToConstant: 12).isActive = true
+        lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
+        lineImg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        
+        headingText.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
+        headingText.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 8).isActive = true
+        headingText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        headingText.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        headingText.text = "Success begins with Unity"
+        headingText.textColor = #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)
+        headingText.font = UIFont(name: "SFProDisplay-Bold", size: 28)
+        
+        mainTextView.topAnchor.constraint(equalTo: headingText.bottomAnchor, constant: 4).isActive = true
+        mainTextView.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 8).isActive = true
+        mainTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        mainTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        mainTextView.adjustsFontForContentSizeCategory = true
+        mainTextView.backgroundColor = .yellow
+        mainTextView.textAlignment = .left
+        mainTextView.text = "Unity was founded in 2010 with one goal in mind: to create long-term partnerships for accounting and finance professionals by focusing on the needs and aspirations of the individual who matters most… you."
+        
+        elementsStackView.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
+        elementsStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        elementsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        elementsStackView.axis = .horizontal
         
         firstNameTextField.backgroundColor = .yellow
         firstNameTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 1).isActive = true
