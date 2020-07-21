@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oHV-3W-s5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oHV-3W-s5n">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -242,10 +242,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YUN-iI-Wm7">
-                                <rect key="frame" x="40" y="84" width="334" height="250"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="250"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQV-Sf-kX6">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="gEC-6n-JXB"/>
                                         </constraints>
@@ -253,7 +253,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="chz-i1-XLJ">
-                                        <rect key="frame" x="0.0" y="70" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="70" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="jHr-ej-RqN"/>
                                         </constraints>
@@ -261,7 +261,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pvq-tU-JyK">
-                                        <rect key="frame" x="0.0" y="140" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="140" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="QuG-xu-DO8"/>
                                         </constraints>
@@ -272,7 +272,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pz-Pk-VJi">
-                                        <rect key="frame" x="0.0" y="210" width="334" height="40"/>
+                                        <rect key="frame" x="0.0" y="210" width="414" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="z78-zB-74l"/>
                                         </constraints>
@@ -285,9 +285,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="aOB-Vs-yON" firstAttribute="trailing" secondItem="YUN-iI-Wm7" secondAttribute="trailing" constant="40" id="7JW-ec-zUx"/>
-                            <constraint firstItem="YUN-iI-Wm7" firstAttribute="top" secondItem="aOB-Vs-yON" secondAttribute="top" constant="40" id="Qxm-vZ-Fsl"/>
-                            <constraint firstItem="YUN-iI-Wm7" firstAttribute="leading" secondItem="aOB-Vs-yON" secondAttribute="leading" constant="40" id="eSP-l0-xZg"/>
+                            <constraint firstItem="aOB-Vs-yON" firstAttribute="trailing" secondItem="YUN-iI-Wm7" secondAttribute="trailing" id="7JW-ec-zUx"/>
+                            <constraint firstItem="YUN-iI-Wm7" firstAttribute="top" secondItem="aOB-Vs-yON" secondAttribute="top" id="Qxm-vZ-Fsl"/>
+                            <constraint firstItem="YUN-iI-Wm7" firstAttribute="leading" secondItem="aOB-Vs-yON" secondAttribute="leading" id="eSP-l0-xZg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aOB-Vs-yON"/>
                     </view>
