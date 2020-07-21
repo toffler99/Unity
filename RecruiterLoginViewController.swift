@@ -29,6 +29,7 @@ class RecruiterLoginViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationItem.title = "Recruiter Login"
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1)]
         self.navigationItem.hidesBackButton = false
         self.view.backgroundColor = .white
         setUpElements()
