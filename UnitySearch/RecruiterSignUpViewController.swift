@@ -109,7 +109,8 @@ class RecruiterSignUpViewController: UIViewController {
             // Create the user
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                 // Check for errors
-                if error != nil {
+                
+                if error != nil || !self.lowercasedLetters(email).contains("unitysearch.com") {
                     // There was an error creating the user
                     self.showError("Error creating recruiter")
                 } else {
@@ -138,4 +139,8 @@ class RecruiterSignUpViewController: UIViewController {
         navigationController?.pushViewController(adminVC, animated: true)
     }
     
+    private func lowercasedLetters (_ emailInput: String) -> String {
+        let lowerCasedLetters = emailInput.lowercased()
+        return lowerCasedLetters
+    }
 }
