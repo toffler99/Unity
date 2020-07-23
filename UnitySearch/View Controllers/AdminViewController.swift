@@ -56,7 +56,7 @@ class AdminViewController : UIViewController {
     
     @objc func buttonAction(sender: UIButton) {
         print("button clicked!!!")
-        
+        Utilitites.shake(sendButton)
         
         //add json into excel file (csv) and send it to recruiter's email
         
