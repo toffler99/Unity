@@ -82,6 +82,9 @@ class AdminViewController : UIViewController {
         composer.setToRecipients(["recruiter's email"])
         composer.setSubject("Candidate Report")
         
+        // add attachment here
+        //composer.addAttachmentData(Data, mimeType: String, fileName: String)
+        
         present(composer, animated: true)
     }
     
