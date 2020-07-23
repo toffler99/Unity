@@ -66,11 +66,65 @@ class AdminViewController : UIViewController {
         
         //add alert to tell the user that the report has been sent to the email
         
-        
-        
-        
+        self.showMailComposer()
     }
     
+    //MARK: Email Compose
+    private func showMailComposer() {
+        
+        guard MFMailComposeViewController.canSendMail() else {
+            self.showNoEmailAlert()
+            return
+        }
+        
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self
+        composer.setToRecipients(["recruiter's email"])
+        composer.setSubject("Candidate Report")
+        
+        present(composer, animated: true)
+    }
     
+}
+
+extension AdminViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let _ = error {
+            controller.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        switch result {
+        case .cancelled:
+            print("cancelled")
+        case .failed:
+            print("failed to send")
+        case .saved:
+            print("saved")
+        case .sent:
+            print("email sent")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showEmailSentAlert()
+            }
+        default:
+            print("default")
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
     
+    private func showEmailSentAlert() {
+        let alert = UIAlertController(title: "Email Sent", message: "Enjoy the report", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alert.addAction(okayAction)
+        self.present(alert, animated: true)
+    }
+    
+    private func showNoEmailAlert() {
+        let alert = UIAlertController(title: "No Email View Available", message: "Please set your email view available", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(okayAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
+    }
 }
