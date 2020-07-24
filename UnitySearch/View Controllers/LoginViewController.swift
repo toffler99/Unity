@@ -48,6 +48,8 @@ class LoginViewController: UIViewController {
         //Hide error label
         errorLabel.alpha = 0
         
+        emailTextField.text = "toffler00@gmail.com"
+        passwordTextField.text = "spoon1532!"
         // Style the elements
         Utilitites.styleTextField(emailTextField)
         Utilitites.styleTextField(passwordTextField)
@@ -65,8 +67,7 @@ class LoginViewController: UIViewController {
     @IBAction func LogInButtonTapped(_ sender: Any) {
         
         // Validate textfields
-       // pushProfileVC()
-        
+        // pushProfileVC()
         // Create cleaned versions of textfields
         let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -87,9 +88,7 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-        
     }
-    
     
     func pushProfileVC() {
         let profileVC = ProfileViewConroller()

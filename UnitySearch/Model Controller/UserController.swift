@@ -23,9 +23,6 @@ class UserController {
     
     //update for local
     
-    
-    
-    
     //Basic Persistence//
     //create a file
     private var readingListURL: URL? {
