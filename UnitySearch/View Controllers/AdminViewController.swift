@@ -36,12 +36,12 @@ class AdminViewController : UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-    
+        
     }
     
     private func setUpButton() {
         self.view.addSubview(sendButton)
-    
+        
         sendButton.backgroundColor = UIColor.orange
         sendButton.tintColor = UIColor.white
         sendButton.setTitle("Send Report", for: .normal)
@@ -76,12 +76,10 @@ class AdminViewController : UIViewController {
             }
         }
         
-        //add alert to tell the user that the report has been sent through email if it is sent successfully
-        
         self.showMailComposer()
     }
     
-    //MARK: Email Compose
+    //MARK: Email Compose - bring csv and attach it to email
     private func showMailComposer() {
         
         guard MFMailComposeViewController.canSendMail() else {
@@ -93,46 +91,49 @@ class AdminViewController : UIViewController {
         composer.mailComposeDelegate = self
         composer.setToRecipients(["recruiter's email"])
         composer.setSubject("Candidate Report")
+    
         
-        //example : getting the file from here or plist -> get cvs file from file manager - basic persistenc store -> you will need data format to be able to include into an email attachment
-        /*
-        guard let filePath = Bundle.main.path(forResource: "filename", ofType: "cvs") else {return}
-        let url = URL(fileURLWithPath: filePath)
-        
+        //bring csv and attach it to an email
+        let fileManager = FileManager.default
+        let fileURL = self.readingListURL
+        guard let url = fileURL,
+            fileManager.fileExists(atPath: url.path) else {return}
         do {
-            let attachmentData = try Data(contentsOf: url)
-            //add attachment here
-            composer.addAttachmentData(attachmentData, mimeType: "application/cvs", fileName: "filename")
+            let data = try Data(contentsOf: url)
+            composer.addAttachmentData(data, mimeType: "application/csv", fileName: "CandidateReport")
             self.present(composer, animated: true, completion: nil)
         } catch let error {
-            print("error in getting data from url:\(url):\(error.localizedDescription)")
+            NSLog("error getting data from url:\(url) and \(error.localizedDescription)")
         }
- */
+    }
 
+    
+    
+    //create a filePath
+    private var readingListURL: URL? {
+        let fileManager = FileManager.default
+        guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {return nil}
+        return documentDirectory.appendingPathComponent("CandidateReport.csv")
     }
     
+    //MARK: Convert array of dictionaries into csv format and save it to document directtory above
+    //save csv into directory
     private func createCSVX(from recArray:[String: Any]) {
         //func for converting [String: Any] into csv format
         var heading = "FirstName, LastName\n"
         //let rows = recArray.map {"\($0["T"]!),\($0["F"]!)"}
         
-        
-        
         //save it into file manager
         //let csvString = heading + rows.joined(separator: "\n")
-        let fileManager = FileManager.default
         do {
-            let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
-            let fileURL = path.appendingPathComponent("CandidateReport.csv")
+            let fileURL = self.readingListURL
             
-           // try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            // try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
             print("error creating file")
         }
     }
-    
 }
-
 
 
 extension AdminViewController: MFMailComposeViewControllerDelegate {
