@@ -82,10 +82,31 @@ class AdminViewController : UIViewController {
         composer.setToRecipients(["recruiter's email"])
         composer.setSubject("Candidate Report")
         
-        // add attachment here
-        //composer.addAttachmentData(Data, mimeType: String, fileName: String)
+        //fetch firebase files (json)
         
-        present(composer, animated: true)
+        
+        //convert it into cvs file format
+        
+        
+        
+        //save this cvs file format into plist
+        
+        
+        
+        
+        //example : getting the file from here or plist
+        guard let filePath = Bundle.main.path(forResource: "filename", ofType: "cvs") else {return}
+        let url = URL(fileURLWithPath: filePath)
+        
+        do {
+            let attachmentData = try Data(contentsOf: url)
+            //add attachment here
+            composer.addAttachmentData(attachmentData, mimeType: "application/cvs", fileName: "filename")
+            self.present(composer, animated: true, completion: nil)
+        } catch let error {
+            print("error in getting data from url:\(url):\(error.localizedDescription)")
+        }
+
     }
     
 }
