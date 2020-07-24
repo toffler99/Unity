@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MessageUI
+import Firebase
 
 class AdminViewController : UIViewController {
     
@@ -59,12 +60,23 @@ class AdminViewController : UIViewController {
         print("button clicked!!!")
         Utilitites.shake(sendButton)
         
-        //add json into excel file (csv) and send it to recruiter's email
+        //it takes value of each key for each user so just create csv format using those values with column headers and save them into csv file (filemanager) when you fetch the firebase data
+        let db = Firestore.firestore()
         
+        let docRef = db.collection("users")
+        docRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                debugPrint("Error fetching docs: \(error)")
+            } else {
+                guard let snap = snapshot else {return}
+                for document in snap.documents {
+                    let data = document.data()
+                    self.createCSVX(from: data)
+                }
+            }
+        }
         
-        
-        
-        //add alert to tell the user that the report has been sent to the email
+        //add alert to tell the user that the report has been sent through email if it is sent successfully
         
         self.showMailComposer()
     }
@@ -82,19 +94,8 @@ class AdminViewController : UIViewController {
         composer.setToRecipients(["recruiter's email"])
         composer.setSubject("Candidate Report")
         
-        //fetch firebase files (json)
-        
-        
-        //convert it into cvs file format
-        
-        
-        
-        //save this cvs file format into plist
-        
-        
-        
-        
-        //example : getting the file from here or plist
+        //example : getting the file from here or plist -> get cvs file from file manager - basic persistenc store -> you will need data format to be able to include into an email attachment
+        /*
         guard let filePath = Bundle.main.path(forResource: "filename", ofType: "cvs") else {return}
         let url = URL(fileURLWithPath: filePath)
         
@@ -106,10 +107,33 @@ class AdminViewController : UIViewController {
         } catch let error {
             print("error in getting data from url:\(url):\(error.localizedDescription)")
         }
+ */
 
     }
     
+    private func createCSVX(from recArray:[String: Any]) {
+        //func for converting [String: Any] into csv format
+        var heading = "FirstName, LastName\n"
+        //let rows = recArray.map {"\($0["T"]!),\($0["F"]!)"}
+        
+        
+        
+        //save it into file manager
+        //let csvString = heading + rows.joined(separator: "\n")
+        let fileManager = FileManager.default
+        do {
+            let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+            let fileURL = path.appendingPathComponent("CandidateReport.csv")
+            
+           // try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+        } catch {
+            print("error creating file")
+        }
+    }
+    
 }
+
+
 
 extension AdminViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
