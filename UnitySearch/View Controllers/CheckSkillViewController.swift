@@ -12,7 +12,8 @@ import GDCheckbox
 import Firebase
 
 protocol SelectSkillDelegate : class {
-    func selectSkillDelegate(skillList : [String])
+    func selectSkillDelegate()
+    func addSkillListDelegate(skillList :[String])
 }
 
 class CheckSkillViewController : UIViewController {
@@ -98,19 +99,19 @@ class CheckSkillViewController : UIViewController {
             case true:
                 let skillName = skill.key
                 addSkillList.append(skillName)
-                print(addSkillList)
             case false:
                 break
             }
         }
+        self.selectSkillDelegate.addSkillListDelegate(skillList: addSkillList)
     }
     
     @objc func saveSkill() {
         DispatchQueue.main.async {
             self.updateSkillList()
+            self.selectSkillDelegate.selectSkillDelegate()
+            self.navigationController?.popViewController(animated: true)
         }
-        self.selectSkillDelegate.selectSkillDelegate(skillList: self.addSkillList)
-        self.navigationController?.popViewController(animated: true)
     }
 }
 

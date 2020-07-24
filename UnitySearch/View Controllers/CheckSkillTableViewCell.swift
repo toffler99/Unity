@@ -54,6 +54,7 @@ extension CheckSkillTableViewCell {
         checkBox.centerYAnchor.constraint(equalTo: backView.centerYAnchor, constant: 0).isActive = true
         checkBox.widthAnchor.constraint(equalToConstant: 24).isActive = true
         checkBox.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        checkBox.isUserInteractionEnabled = false
         
         skillName.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 4).isActive = true
         skillName.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -4).isActive = true

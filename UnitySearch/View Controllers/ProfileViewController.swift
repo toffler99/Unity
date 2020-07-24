@@ -60,8 +60,8 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
             addSubView()
             setUpLayout()
             addGesture()
+            updateViews()
         }
-        updateViews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -150,8 +150,11 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
         navigationController?.pushViewController(checkSkillVC, animated: true)
     }
     
-    func selectSkillDelegate(skillList: [String]) {
+    func addSkillListDelegate(skillList: [String]) {
         self.skillList = skillList
+    }
+    
+    func selectSkillDelegate() {
         skillTableView.reloadData()
         print("skill List \(skillList)")
     }
@@ -442,11 +445,18 @@ extension ProfileViewConroller : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSkillTableViewCell", for: indexPath) as! ProfileSkillTableViewCell
-        print("skillList count \(skillList[indexPath.row])")
-        cell.skillName.text = skillList[indexPath.row]
-        cell.skillName.textColor = .black
-        cell.selectionStyle = .none
-        cell.skillName.font = UIFont(name: "SF-Pro-Display-Medium", size: 30)
+        switch skillList.count {
+        case 0:
+            cell.skillName.text = skillList[indexPath.row]
+            cell.skillName.textColor = .black
+            cell.selectionStyle = .none
+            cell.skillName.font = UIFont(name: "SF-Pro-Display-Medium", size: 30)
+        default:
+            cell.skillName.text = skillList[indexPath.row]
+            cell.skillName.textColor = .black
+            cell.selectionStyle = .none
+            cell.skillName.font = UIFont(name: "SF-Pro-Display-Medium", size: 30)
+        }
         return cell
     }
 }
