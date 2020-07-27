@@ -20,6 +20,7 @@ class SignUpViewController: UIViewController {
     private var phoneNumberTextField: CustomTextField!
     private var emailTextField: CustomTextField!
     private var passwordTextField: CustomTextField!
+    private var confirmPwTextField : CustomTextField!
     private var signUpButton: UIButton!
     private var errorLabel: UILabel!
     private var headingText : UILabel!
@@ -70,6 +71,7 @@ class SignUpViewController: UIViewController {
         phoneNumberTextField = CustomTextField()
         emailTextField = CustomTextField()
         passwordTextField = CustomTextField()
+        confirmPwTextField = CustomTextField()
         errorLabel = UILabel()
         signUpButton = UIButton()
          
@@ -78,7 +80,7 @@ class SignUpViewController: UIViewController {
         lineImg.backgroundColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
         lineImg.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         lineImg.widthAnchor.constraint(equalToConstant: 12).isActive = true
-        lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
+        lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         lineImg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
         view.addSubview(headingText)
@@ -108,31 +110,35 @@ class SignUpViewController: UIViewController {
         
         view.addSubview(elementsStackView)
         elementsStackView.translatesAutoresizingMaskIntoConstraints = false
-        elementsStackView.topAnchor.constraint(equalTo: mainTextView.bottomAnchor, constant: 4).isActive = true
+        elementsStackView.topAnchor.constraint(equalTo: mainTextView.bottomAnchor, constant: 36).isActive = true
         elementsStackView.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 0).isActive = true
         elementsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        elementsStackView.heightAnchor.constraint(equalToConstant: 160).isActive = true
+        elementsStackView.heightAnchor.constraint(equalToConstant: 206).isActive = true
         elementsStackView.backgroundColor = .white
-        addTopBorder(with: elementsStackView, with: #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1), andWidth: 2)
-        addBottomBorder(with: elementsStackView, with: #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1), andWidth: 2)
+        Utilitites.addTopBorder(with: elementsStackView, with: #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1), andWidth: 2)
+        Utilitites.addBottomBorder(with: elementsStackView, with: #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1), andWidth: 2)
         
         elementsStackView.addSubview(firstNameTextField)
         firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        firstNameTextField.backgroundColor = .green
+        firstNameTextField.backgroundColor = .white
         firstNameTextField.topAnchor.constraint(equalTo: elementsStackView.topAnchor, constant: 2).isActive = true
         firstNameTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 4).isActive = true
         firstNameTextField.widthAnchor.constraint(equalTo: elementsStackView.widthAnchor, multiplier: 0.48).isActive = true
         firstNameTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
         firstNameTextField.placeholder = "first name"
-
+        firstNameTextField.delegate = self
+        Utilitites.addBottomBorder(with: firstNameTextField, with: .lightGray, andWidth: 1)
+        
         elementsStackView.addSubview(lastNameTextField)
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        lastNameTextField.backgroundColor = .yellow
+        lastNameTextField.backgroundColor = .white
         lastNameTextField.topAnchor.constraint(equalTo: elementsStackView.topAnchor, constant: 2).isActive = true
         lastNameTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -4).isActive = true
-        lastNameTextField.widthAnchor.constraint(equalTo: elementsStackView.widthAnchor, multiplier: 0.49).isActive = true
+        lastNameTextField.widthAnchor.constraint(equalTo: elementsStackView.widthAnchor, multiplier: 0.48).isActive = true
         lastNameTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
         lastNameTextField.placeholder = "last name"
+        lastNameTextField.delegate = self
+        Utilitites.addBottomBorder(with: lastNameTextField, with: .lightGray, andWidth: 1)
 
         elementsStackView.addSubview(phoneNumberTextField)
         phoneNumberTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -142,7 +148,10 @@ class SignUpViewController: UIViewController {
         phoneNumberTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -4).isActive = true
         phoneNumberTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
         phoneNumberTextField.placeholder = "phone number"
-
+        phoneNumberTextField.keyboardType = .phonePad
+        phoneNumberTextField.delegate = self
+        Utilitites.addBottomBorder(with: phoneNumberTextField, with: .lightGray, andWidth: 1)
+        
         elementsStackView.addSubview(emailTextField)
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.backgroundColor = .white
@@ -151,6 +160,9 @@ class SignUpViewController: UIViewController {
         emailTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -4).isActive = true
         emailTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
         emailTextField.placeholder = "email"
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.delegate = self
+        Utilitites.addBottomBorder(with: emailTextField, with: .lightGray, andWidth: 1)
 
         elementsStackView.addSubview(passwordTextField)
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -160,14 +172,30 @@ class SignUpViewController: UIViewController {
         passwordTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -4).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
         passwordTextField.placeholder = "password"
+        passwordTextField.delegate = self
+        Utilitites.addBottomBorder(with: passwordTextField, with: .lightGray, andWidth: 1)
+        
+        elementsStackView.addSubview(confirmPwTextField)
+        confirmPwTextField.translatesAutoresizingMaskIntoConstraints = false
+        confirmPwTextField.backgroundColor = .white
+        confirmPwTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 4).isActive = true
+        confirmPwTextField.leadingAnchor.constraint(equalTo: elementsStackView.leadingAnchor, constant: 4).isActive = true
+        confirmPwTextField.trailingAnchor.constraint(equalTo: elementsStackView.trailingAnchor, constant: -4).isActive = true
+        confirmPwTextField.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        confirmPwTextField.placeholder = "password"
+        confirmPwTextField.delegate = self
+        Utilitites.addBottomBorder(with: confirmPwTextField, with: .lightGray, andWidth: 1)
 
         view.addSubview(signUpButton)
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.topAnchor.constraint(equalTo: elementsStackView.bottomAnchor, constant: 4).isActive = true
-        signUpButton.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 4).isActive = true
-        signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        signUpButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
+        signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         signUpButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         signUpButton.setTitle("Confirm", for: .normal)
+        signUpButton.backgroundColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
+        signUpButton.titleLabel!.font = UIFont(name: "SFProDisplay-Bold", size: 18)
+        signUpButton.setTitleColor(#colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1), for: .normal)
         signUpButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
 
         view.addSubview(errorLabel)
@@ -182,12 +210,7 @@ class SignUpViewController: UIViewController {
         errorLabel.textColor = .red
         errorLabel.font = UIFont(name: "SFProDisplay-Medium", size: 16)
 
-        Utilitites.styleTextField(firstNameTextField)
-        Utilitites.styleTextField(lastNameTextField)
-        Utilitites.styleTextField(emailTextField)
-        Utilitites.styleTextField(phoneNumberTextField)
-        Utilitites.styleTextField(passwordTextField)
-        Utilitites.styleFilledButton(signUpButton)
+//        Utilitites.styleFilledButton(signUpButton)
     }
     
     /*
@@ -223,38 +246,7 @@ class SignUpViewController: UIViewController {
         
         return nil
     }
-    
-    func addTopBorder(with view : UIView, with color: UIColor?, andWidth borderWidth: CGFloat) {
-        let border = UIView()
-        border.backgroundColor = color
-        border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
-        border.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: borderWidth)
-        view.addSubview(border)
-    }
-    
-    func addBottomBorder(with view: UIView,with color: UIColor?, andWidth borderWidth: CGFloat) {
-        let border = UIView()
-        border.backgroundColor = color
-        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
-        border.frame = CGRect(x: 0, y: view.frame.size.height - borderWidth, width: view.frame.size.width, height: borderWidth)
-        view.addSubview(border)
-    }
 
-    func addLeftBorder(with view: UIView, with color: UIColor?, andWidth borderWidth: CGFloat) {
-        let border = UIView()
-        border.backgroundColor = color
-        border.frame = CGRect(x: 0, y: 0, width: borderWidth, height: view.frame.size.height)
-        border.autoresizingMask = [.flexibleHeight, .flexibleRightMargin]
-        view.addSubview(border)
-    }
-
-    func addRightBorder(with view: UIView, with color: UIColor?, andWidth borderWidth: CGFloat) {
-        let border = UIView()
-        border.backgroundColor = color
-        border.autoresizingMask = [.flexibleHeight, .flexibleLeftMargin]
-        border.frame = CGRect(x: view.frame.size.width - borderWidth, y: 0, width: borderWidth, height: view.frame.size.height)
-        view.addSubview(border)
-    }
     
     @objc func signUpTapped(_ sender: Any) {
         
@@ -326,7 +318,7 @@ class SignUpViewController: UIViewController {
     
 }
 
-extension SignUpViewController  {
+extension SignUpViewController : UITextFieldDelegate  {
     
     fileprivate func registerForKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keboardFrameWillHide),
@@ -343,12 +335,14 @@ extension SignUpViewController  {
     @objc func keboardFrameWillHide(notification : NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
           if keyboardShown == false {
+            print(keyboardSize.height)
               return
           }
             UIView.animate(withDuration: 0.33, animations: {
                 guard let originY = self.originY else { return }
                 self.elementsStackView.translatesAutoresizingMaskIntoConstraints = false
                 self.elementsStackView.frame.origin.y = originY
+//                self.signUpButton.translatesAutoresizingMaskIntoConstraints = false
             }) { (Bool) in
                 self.keyboardShown = false
             }
@@ -362,12 +356,21 @@ extension SignUpViewController  {
             }
             UIView.animate(withDuration: 0.33, animations: {
                 if self.originY == nil { self.originY = self.elementsStackView.frame.origin.y }
-                let height = keyboardSize.height - self.elementsStackView.frame.size.height
+                let height = self.elementsStackView.frame.size.height
                 self.elementsStackView.frame.origin.y = self.originY! - height
                 self.elementsStackView.translatesAutoresizingMaskIntoConstraints = true
             }) { (Bool) in
                 self.keyboardShown = true
             }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

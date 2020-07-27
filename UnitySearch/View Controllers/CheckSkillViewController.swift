@@ -184,7 +184,7 @@ extension CheckSkillViewController {
         lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
         lineImg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
-        skillListTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
+        skillListTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         skillListTableView.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 0).isActive = true
         skillListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         skillListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
