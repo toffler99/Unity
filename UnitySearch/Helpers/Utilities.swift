@@ -77,6 +77,46 @@ class Utilitites {
     
     // Add email validation
     // Add phone number validation
+    
+    static func addTopBorder(with view : UIView, with color: UIColor?, andWidth borderWidth: CGFloat) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        border.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: borderWidth)
+        view.addSubview(border)
+    }
+    
+    static func addBottomBorder(with view: UIView,with color: UIColor?, andWidth borderWidth: CGFloat) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        border.frame = CGRect(x: 0, y: view.frame.size.height - borderWidth, width: view.frame.size.width, height: borderWidth)
+        view.addSubview(border)
+    }
+
+    static func addLeftBorder(with view: UIView, with color: UIColor?, andWidth borderWidth: CGFloat) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.frame = CGRect(x: 0, y: 0, width: borderWidth, height: view.frame.size.height)
+        border.autoresizingMask = [.flexibleHeight, .flexibleRightMargin]
+        view.addSubview(border)
+    }
+
+    static func addRightBorder(with view: UIView, with color: UIColor?, andWidth borderWidth: CGFloat) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleHeight, .flexibleLeftMargin]
+        border.frame = CGRect(x: view.frame.size.width - borderWidth, y: 0, width: borderWidth, height: view.frame.size.height)
+        view.addSubview(border)
+    }
+    
+    static func addBottomBorder(with view: UITextField,with color: UIColor?, andWidth borderWidth: CGFloat) {
+           let border = UIView()
+           border.backgroundColor = color
+           border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+           border.frame = CGRect(x: 0, y: view.frame.size.height - borderWidth, width: view.frame.size.width, height: borderWidth)
+           view.addSubview(border)
+       }
 }
 
 extension UIViewController {

@@ -181,7 +181,7 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
     
     @objc func editProfile(sender : UIButton) {
         if sender.isSelected == false{
-            sender.setTitle("Save", for: .normal)
+            sender.setTitle("save", for: .normal)
             sender.isSelected = true
             firstNameTF.isUserInteractionEnabled = true
             lastNameTF.isUserInteractionEnabled = true
@@ -189,7 +189,7 @@ class ProfileViewConroller : UIViewController, SelectSkillDelegate, UITextFieldD
             emailTF.isUserInteractionEnabled = true
         } else {
             print("\(sender.isSelected)")
-            sender.setTitle("Edit", for: .normal)
+            sender.setTitle("edit", for: .normal)
             sender.isSelected = false
             firstNameTF.isUserInteractionEnabled = false
             firstNameTF.backgroundColor = .clear
@@ -303,7 +303,7 @@ extension ProfileViewConroller {
         lineImg.backgroundColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
         lineImg.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         lineImg.widthAnchor.constraint(equalToConstant: 12).isActive = true
-        lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: heightPadding).isActive = true
+        lineImg.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         lineImg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
         nameLB.leadingAnchor.constraint(equalTo: lineImg.trailingAnchor, constant: 1).isActive = true
