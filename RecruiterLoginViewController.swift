@@ -128,7 +128,7 @@ class RecruiterLoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.addTarget(self, action: #selector(RecruiterLoginViewController.LogInButtonTapped(_:)), for: .touchUpInside)
 
         emailTextField.text = "admin@unitysearch.com"
-        passwordTextField.text = "admin11!l;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;p"
+        passwordTextField.text = "admin11!l"
     }
         @IBAction func LogInButtonTapped(_ sender: Any) {
         
