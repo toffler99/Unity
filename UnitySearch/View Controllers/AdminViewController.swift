@@ -17,6 +17,8 @@ class AdminViewController : UIViewController {
     var backBtn : UIImageView = UIImageView()
     var sendButton: UIButton = UIButton()
     
+    var userReps: [UserRep] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
@@ -29,7 +31,33 @@ class AdminViewController : UIViewController {
         self.view.backgroundColor = .white
         
         self.setUpButton()
+        
+        // Fetch firebase and append it to userReps above
+        let db = Firestore.firestore()
+        let docRef = db.collection("users")
+        docRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print("there is an error in getting all firebase userdata")
+            }
+            
+            for user in (snapshot?.documents)! {
+                let data = user.data()
+                let firstName = data["firstName"] as? String ?? "Anonymous"
+                let lastName = data["lastName"] as? String ?? "Anonymous"
+                let email = data["email"] as? String ?? ""
+                let phoneNumber = data["phoneNumber"] as? String ?? ""
+                let status = data["status"] as? Bool ?? false
+                let timeStamp = data["timeStamp"] as? String ?? ""
+                let skills = data["skills"] as? [String] ?? []
+                
+                let userRep = UserRep(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, status: status, timeStamp: timeStamp, skills: skills)
+                self.userReps.append(userRep)
+            }
+            
+        }
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -69,14 +97,13 @@ class AdminViewController : UIViewController {
                 debugPrint("Error fetching docs: \(error)")
             } else {
                 guard let snap = snapshot else {return}
-                for document in snap.documents {
-                    let data = document.data()
-                    self.createCSVX(from: data)
+                for userRep in snap.documents {
+                    let data = userRep.data()
                 }
             }
+            
+            self.showMailComposer()
         }
-        
-        self.showMailComposer()
     }
     
     //MARK: Email Compose - bring csv and attach it to email
@@ -91,7 +118,7 @@ class AdminViewController : UIViewController {
         composer.mailComposeDelegate = self
         composer.setToRecipients(["recruiter's email"])
         composer.setSubject("Candidate Report")
-    
+        
         
         //bring csv and attach it to an email
         let fileManager = FileManager.default
@@ -106,7 +133,6 @@ class AdminViewController : UIViewController {
             NSLog("error getting data from url:\(url) and \(error.localizedDescription)")
         }
     }
-
     
     
     //create a filePath
@@ -118,9 +144,9 @@ class AdminViewController : UIViewController {
     
     //MARK: Convert array of dictionaries into csv format and save it to document directtory above
     //save csv into directory
-    private func createCSVX(from recArray:[String: Any]) {
+    private func createCSVX(from recArray:[Dictionary<String, AnyObject>]) {
         //func for converting [String: Any] into csv format
-        var heading = "FirstName, LastName\n"
+        var csvString = "FirstName, LastName\n"
         //let rows = recArray.map {"\($0["T"]!),\($0["F"]!)"}
         
         //save it into file manager
@@ -177,3 +203,6 @@ extension AdminViewController: MFMailComposeViewControllerDelegate {
         self.present(alert, animated: true)
     }
 }
+
+//test@unitysearch.com
+//tester123*

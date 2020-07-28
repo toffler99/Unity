@@ -17,3 +17,21 @@ struct UserRep: Codable, Equatable {
     var timeStamp: String
     var skills: [String]
 }
+
+/* Skills
+ 
+ Accounting Clerk
+ Accounts Payable
+ Accounts Receivable
+ Admin Assistant
+ Bookkeeper
+ Cash Applications
+ Collections
+ Credit Analyst
+ Data Entry
+ Payroll Accountant
+ Helpdesk    Desktop
+ Quality Assurance
+ 
+ 
+ */
