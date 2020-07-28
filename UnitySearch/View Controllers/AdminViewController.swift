@@ -92,7 +92,7 @@ class AdminViewController : UIViewController {
         
         //it takes value of each key for each user so just create csv format using those values with column headers and save them into csv file (filemanager) when you fetch the firebase data
         self.createCSV(from: self.userReps)
-        //self.showMailComposer()
+        self.showMailComposer()
     }
     
     //MARK: Email Compose - bring csv and attach it to email
@@ -105,7 +105,7 @@ class AdminViewController : UIViewController {
         
         let composer = MFMailComposeViewController()
         composer.mailComposeDelegate = self
-        composer.setToRecipients(["recruiter's email"])
+        composer.setToRecipients(["your email"])
         composer.setSubject("Candidate Report")
         
         
