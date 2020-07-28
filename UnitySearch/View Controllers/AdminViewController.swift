@@ -53,8 +53,10 @@ class AdminViewController : UIViewController {
                 let userRep = UserRep(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, status: status, timeStamp: timeStamp, skills: skills)
                 self.userReps.append(userRep)
             }
-            
+            print(self.userReps)
         }
+        
+        
         
     }
     
@@ -89,21 +91,8 @@ class AdminViewController : UIViewController {
         Utilitites.shake(sendButton)
         
         //it takes value of each key for each user so just create csv format using those values with column headers and save them into csv file (filemanager) when you fetch the firebase data
-        let db = Firestore.firestore()
-        
-        let docRef = db.collection("users")
-        docRef.getDocuments { (snapshot, error) in
-            if let error = error {
-                debugPrint("Error fetching docs: \(error)")
-            } else {
-                guard let snap = snapshot else {return}
-                for userRep in snap.documents {
-                    let data = userRep.data()
-                }
-            }
-            
-            self.showMailComposer()
-        }
+        self.createCSV(from: self.userReps)
+        //self.showMailComposer()
     }
     
     //MARK: Email Compose - bring csv and attach it to email
@@ -144,17 +133,20 @@ class AdminViewController : UIViewController {
     
     //MARK: Convert array of dictionaries into csv format and save it to document directtory above
     //save csv into directory
-    private func createCSVX(from recArray:[Dictionary<String, AnyObject>]) {
-        //func for converting [String: Any] into csv format
-        var csvString = "FirstName, LastName\n"
+    private func createCSV (from userReps:[UserRep]) {
+        //func for converting [UserRep] into csv format
+        var csvString = "FirstName, LastName, Email\n"
         //let rows = recArray.map {"\($0["T"]!),\($0["F"]!)"}
+        //let csvString = heading + rows.joined(separator: "\n")
+        for userRep in userReps {
+            csvString += userRep.firstName + ", " + userRep.lastName + ", " + "\(userRep.email)\n"
+        }
+        print(csvString)
         
         //save it into file manager
-        //let csvString = heading + rows.joined(separator: "\n")
         do {
-            let fileURL = self.readingListURL
-            
-            // try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            guard let fileURL = self.readingListURL else {return}
+            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
             print("error creating file")
         }
@@ -203,6 +195,7 @@ extension AdminViewController: MFMailComposeViewControllerDelegate {
         self.present(alert, animated: true)
     }
 }
-
-//test@unitysearch.com
-//tester123*
+/*
+test@unitysearch.com
+tester123*
+*/
