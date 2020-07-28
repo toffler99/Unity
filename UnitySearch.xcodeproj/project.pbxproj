@@ -17,6 +17,7 @@
 		0B5CEBF624B3E423006BBDDA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CEBF524B3E423006BBDDA /* LoginViewController.swift */; };
 		0B5CEBFC24B3EF5F006BBDDA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CEBFB24B3EF5F006BBDDA /* Utilities.swift */; };
 		0B5CEBFE24B3FE58006BBDDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CEBFD24B3FE57006BBDDA /* GoogleService-Info.plist */; };
+		0B5EAC1B24CFD61900D1C2A3 /* UserRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5EAC1A24CFD61900D1C2A3 /* UserRep.swift */; };
 		0B699D7E24C6ACB6007D5610 /* RecruiterLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B699D7D24C6ACB6007D5610 /* RecruiterLoginViewController.swift */; };
 		0B699D8024C6B9B7007D5610 /* RecruiterSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B699D7F24C6B9B7007D5610 /* RecruiterSignUpViewController.swift */; };
 		0BF18A7524BFDECC0014A616 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF18A7424BFDECC0014A616 /* User.swift */; };
@@ -46,6 +47,7 @@
 		0B5CEBF524B3E423006BBDDA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0B5CEBFB24B3EF5F006BBDDA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		0B5CEBFD24B3FE57006BBDDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0B5EAC1A24CFD61900D1C2A3 /* UserRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserRep.swift; path = UnitySearch/Model/UserRep.swift; sourceTree = SOURCE_ROOT; };
 		0B699D7D24C6ACB6007D5610 /* RecruiterLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterLoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		0B699D7F24C6B9B7007D5610 /* RecruiterSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecruiterSignUpViewController.swift; path = UnitySearch/RecruiterSignUpViewController.swift; sourceTree = SOURCE_ROOT; };
 		0BF18A7424BFDECC0014A616 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = SOURCE_ROOT; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0BF18A7424BFDECC0014A616 /* User.swift */,
+				0B5EAC1A24CFD61900D1C2A3 /* UserRep.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				626C878124B99D490078FA28 /* CheckSkillTableViewCell.swift in Sources */,
 				626C878324BB14BF0078FA28 /* ProfileSkillTableViewCell.swift in Sources */,
 				62E66E4624C48159009EECD1 /* AdminViewController.swift in Sources */,
+				0B5EAC1B24CFD61900D1C2A3 /* UserRep.swift in Sources */,
 				0BF18A7824BFDF760014A616 /* UserController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
