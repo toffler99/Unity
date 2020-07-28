@@ -127,6 +127,8 @@ class RecruiterLoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.setTitleColor(#colorLiteral(red: 0.005039108917, green: 0.2046912909, blue: 0.4367187917, alpha: 1), for: .normal)
         loginButton.addTarget(self, action: #selector(RecruiterLoginViewController.LogInButtonTapped(_:)), for: .touchUpInside)
 
+        emailTextField.text = "admin@unitysearch.com"
+        passwordTextField.text = "admin11!l;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;p"
     }
         @IBAction func LogInButtonTapped(_ sender: Any) {
         
