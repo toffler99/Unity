@@ -473,6 +473,7 @@
 			baseConfigurationReference = 553E5EF9D04F352081F17544 /* Pods-UnitySearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UnitySearch/UnitySearch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X46PH8MSE8;
@@ -493,6 +494,7 @@
 			baseConfigurationReference = E2E57A4CD0725A92D41F7137 /* Pods-UnitySearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UnitySearch/UnitySearchRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X46PH8MSE8;

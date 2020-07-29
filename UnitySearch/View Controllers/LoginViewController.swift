@@ -163,7 +163,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 case "jRkJgeiZQvS7cTgJWqYj4FlBVJG3":
                     self.pushAdminVC()
                 default:
-                
+                    InstanceID.instanceID().instanceID { (result, error) in
+                        let token = result?.token
+                        print("token = \(token ?? "no token")")
+                    }
                     self.pushProfileVC()
                 }
             }
